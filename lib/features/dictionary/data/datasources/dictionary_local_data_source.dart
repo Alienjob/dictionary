@@ -24,7 +24,6 @@ class DictionaryLocalDataSourceImpl implements DictionaryLocalDataSource {
       {required this.embeddedDataService,
       required this.sharedPreferences,
       required this.sqlService});
-
   @override
   Future<UserDictionaryList> getSplashUserDictionaryList() async {
     List<UserDictionary> list = [];
