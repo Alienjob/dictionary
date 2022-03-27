@@ -22,6 +22,10 @@ class _$AuthEventTearOff {
     return const _LoginEvent();
   }
 
+  _SinginEvent singin() {
+    return const _SinginEvent();
+  }
+
   _ChangetEvent changed({required AuthenticationState state}) {
     return _ChangetEvent(
       state: state,
@@ -41,6 +45,7 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() login,
+    required TResult Function() singin,
     required TResult Function(AuthenticationState state) changed,
     required TResult Function() logout,
   }) =>
@@ -48,6 +53,7 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? login,
+    TResult Function()? singin,
     TResult Function(AuthenticationState state)? changed,
     TResult Function()? logout,
   }) =>
@@ -55,6 +61,7 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? login,
+    TResult Function()? singin,
     TResult Function(AuthenticationState state)? changed,
     TResult Function()? logout,
     required TResult orElse(),
@@ -63,6 +70,7 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoginEvent value) login,
+    required TResult Function(_SinginEvent value) singin,
     required TResult Function(_ChangetEvent value) changed,
     required TResult Function(_LogoutEvent value) logout,
   }) =>
@@ -70,6 +78,7 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_LoginEvent value)? login,
+    TResult Function(_SinginEvent value)? singin,
     TResult Function(_ChangetEvent value)? changed,
     TResult Function(_LogoutEvent value)? logout,
   }) =>
@@ -77,6 +86,7 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoginEvent value)? login,
+    TResult Function(_SinginEvent value)? singin,
     TResult Function(_ChangetEvent value)? changed,
     TResult Function(_LogoutEvent value)? logout,
     required TResult orElse(),
@@ -140,6 +150,7 @@ class _$_LoginEvent extends _LoginEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() login,
+    required TResult Function() singin,
     required TResult Function(AuthenticationState state) changed,
     required TResult Function() logout,
   }) {
@@ -150,6 +161,7 @@ class _$_LoginEvent extends _LoginEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? login,
+    TResult Function()? singin,
     TResult Function(AuthenticationState state)? changed,
     TResult Function()? logout,
   }) {
@@ -160,6 +172,7 @@ class _$_LoginEvent extends _LoginEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? login,
+    TResult Function()? singin,
     TResult Function(AuthenticationState state)? changed,
     TResult Function()? logout,
     required TResult orElse(),
@@ -174,6 +187,7 @@ class _$_LoginEvent extends _LoginEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoginEvent value) login,
+    required TResult Function(_SinginEvent value) singin,
     required TResult Function(_ChangetEvent value) changed,
     required TResult Function(_LogoutEvent value) logout,
   }) {
@@ -184,6 +198,7 @@ class _$_LoginEvent extends _LoginEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_LoginEvent value)? login,
+    TResult Function(_SinginEvent value)? singin,
     TResult Function(_ChangetEvent value)? changed,
     TResult Function(_LogoutEvent value)? logout,
   }) {
@@ -194,6 +209,7 @@ class _$_LoginEvent extends _LoginEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoginEvent value)? login,
+    TResult Function(_SinginEvent value)? singin,
     TResult Function(_ChangetEvent value)? changed,
     TResult Function(_LogoutEvent value)? logout,
     required TResult orElse(),
@@ -208,6 +224,123 @@ class _$_LoginEvent extends _LoginEvent {
 abstract class _LoginEvent extends AuthEvent {
   const factory _LoginEvent() = _$_LoginEvent;
   const _LoginEvent._() : super._();
+}
+
+/// @nodoc
+abstract class _$SinginEventCopyWith<$Res> {
+  factory _$SinginEventCopyWith(
+          _SinginEvent value, $Res Function(_SinginEvent) then) =
+      __$SinginEventCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$SinginEventCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
+    implements _$SinginEventCopyWith<$Res> {
+  __$SinginEventCopyWithImpl(
+      _SinginEvent _value, $Res Function(_SinginEvent) _then)
+      : super(_value, (v) => _then(v as _SinginEvent));
+
+  @override
+  _SinginEvent get _value => super._value as _SinginEvent;
+}
+
+/// @nodoc
+
+class _$_SinginEvent extends _SinginEvent {
+  const _$_SinginEvent() : super._();
+
+  @override
+  String toString() {
+    return 'AuthEvent.singin()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _SinginEvent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() login,
+    required TResult Function() singin,
+    required TResult Function(AuthenticationState state) changed,
+    required TResult Function() logout,
+  }) {
+    return singin();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? login,
+    TResult Function()? singin,
+    TResult Function(AuthenticationState state)? changed,
+    TResult Function()? logout,
+  }) {
+    return singin?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? login,
+    TResult Function()? singin,
+    TResult Function(AuthenticationState state)? changed,
+    TResult Function()? logout,
+    required TResult orElse(),
+  }) {
+    if (singin != null) {
+      return singin();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoginEvent value) login,
+    required TResult Function(_SinginEvent value) singin,
+    required TResult Function(_ChangetEvent value) changed,
+    required TResult Function(_LogoutEvent value) logout,
+  }) {
+    return singin(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_LoginEvent value)? login,
+    TResult Function(_SinginEvent value)? singin,
+    TResult Function(_ChangetEvent value)? changed,
+    TResult Function(_LogoutEvent value)? logout,
+  }) {
+    return singin?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoginEvent value)? login,
+    TResult Function(_SinginEvent value)? singin,
+    TResult Function(_ChangetEvent value)? changed,
+    TResult Function(_LogoutEvent value)? logout,
+    required TResult orElse(),
+  }) {
+    if (singin != null) {
+      return singin(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SinginEvent extends AuthEvent {
+  const factory _SinginEvent() = _$_SinginEvent;
+  const _SinginEvent._() : super._();
 }
 
 /// @nodoc
@@ -275,6 +408,7 @@ class _$_ChangetEvent extends _ChangetEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() login,
+    required TResult Function() singin,
     required TResult Function(AuthenticationState state) changed,
     required TResult Function() logout,
   }) {
@@ -285,6 +419,7 @@ class _$_ChangetEvent extends _ChangetEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? login,
+    TResult Function()? singin,
     TResult Function(AuthenticationState state)? changed,
     TResult Function()? logout,
   }) {
@@ -295,6 +430,7 @@ class _$_ChangetEvent extends _ChangetEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? login,
+    TResult Function()? singin,
     TResult Function(AuthenticationState state)? changed,
     TResult Function()? logout,
     required TResult orElse(),
@@ -309,6 +445,7 @@ class _$_ChangetEvent extends _ChangetEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoginEvent value) login,
+    required TResult Function(_SinginEvent value) singin,
     required TResult Function(_ChangetEvent value) changed,
     required TResult Function(_LogoutEvent value) logout,
   }) {
@@ -319,6 +456,7 @@ class _$_ChangetEvent extends _ChangetEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_LoginEvent value)? login,
+    TResult Function(_SinginEvent value)? singin,
     TResult Function(_ChangetEvent value)? changed,
     TResult Function(_LogoutEvent value)? logout,
   }) {
@@ -329,6 +467,7 @@ class _$_ChangetEvent extends _ChangetEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoginEvent value)? login,
+    TResult Function(_SinginEvent value)? singin,
     TResult Function(_ChangetEvent value)? changed,
     TResult Function(_LogoutEvent value)? logout,
     required TResult orElse(),
@@ -392,6 +531,7 @@ class _$_LogoutEvent extends _LogoutEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() login,
+    required TResult Function() singin,
     required TResult Function(AuthenticationState state) changed,
     required TResult Function() logout,
   }) {
@@ -402,6 +542,7 @@ class _$_LogoutEvent extends _LogoutEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? login,
+    TResult Function()? singin,
     TResult Function(AuthenticationState state)? changed,
     TResult Function()? logout,
   }) {
@@ -412,6 +553,7 @@ class _$_LogoutEvent extends _LogoutEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? login,
+    TResult Function()? singin,
     TResult Function(AuthenticationState state)? changed,
     TResult Function()? logout,
     required TResult orElse(),
@@ -426,6 +568,7 @@ class _$_LogoutEvent extends _LogoutEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoginEvent value) login,
+    required TResult Function(_SinginEvent value) singin,
     required TResult Function(_ChangetEvent value) changed,
     required TResult Function(_LogoutEvent value) logout,
   }) {
@@ -436,6 +579,7 @@ class _$_LogoutEvent extends _LogoutEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_LoginEvent value)? login,
+    TResult Function(_SinginEvent value)? singin,
     TResult Function(_ChangetEvent value)? changed,
     TResult Function(_LogoutEvent value)? logout,
   }) {
@@ -446,6 +590,7 @@ class _$_LogoutEvent extends _LogoutEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoginEvent value)? login,
+    TResult Function(_SinginEvent value)? singin,
     TResult Function(_ChangetEvent value)? changed,
     TResult Function(_LogoutEvent value)? logout,
     required TResult orElse(),

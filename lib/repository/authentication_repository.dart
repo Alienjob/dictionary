@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:device_info_plus/device_info_plus.dart';
+import 'package:uuid/uuid.dart';
+
 
 class AuthenticationRepository {
   final Future<SharedPreferences> _prefs;
@@ -42,16 +43,9 @@ class AuthenticationRepository {
   }
 
   Future<String> makeDeviceID() async {
-    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-
+    var deviceID = const Uuid().v1();
     await Future.delayed(const Duration(seconds: 2));
-
-    if (androidInfo.fingerprint == null) {
-      throw Exception("Can't get device info");
-    }
-
-    return androidInfo.fingerprint ?? '';
+    return deviceID;
   }
 
   Future<void> storeDeviceID(String deviceID) async {
