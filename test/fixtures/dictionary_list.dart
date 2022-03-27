@@ -26,6 +26,45 @@ abstract class DictionaryListFixture {
   }
 }
 
+abstract class UserDictionaryListFixture {
+  static List<UserDictionary> get two {
+    return [
+      UserDictionary(
+        dictionary: Dictionary(
+          key: '1',
+          title: 'test 1',
+          img: DictionaryImage(
+            path: '',
+            pathType: DictionaryImagePathType.embedded,
+          ),
+          description: '',
+        ),
+        progress: const UserDictionaryProgress(
+          dailyProgress: [],
+          newCards: 0,
+          repeateCards: 0,
+        ),
+      ),
+            UserDictionary(
+        dictionary: Dictionary(
+          key: '2',
+          title: 'test 2',
+          img: DictionaryImage(
+            path: '',
+            pathType: DictionaryImagePathType.embedded,
+          ),
+          description: '',
+        ),
+        progress: const UserDictionaryProgress(
+          dailyProgress: [],
+          newCards: 0,
+          repeateCards: 0,
+        ),
+      ),
+    ];
+  }
+}
+
 abstract class DictionaryFixture {
   static Dictionary get empty {
     return Dictionary(

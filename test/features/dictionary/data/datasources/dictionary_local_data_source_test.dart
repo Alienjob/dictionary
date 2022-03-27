@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:dictionary/features/dictionary/data/datasources/dictionary_local_data_source.dart';
 import 'package:dictionary/features/dictionary/domain/entities/dictionary.dart';
+import 'package:dictionary/services/embedded_data_service.dart';
+import 'package:dictionary/services/sql_lite.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,16 +12,29 @@ import '../../../../fixtures/dictionary_list.dart';
 
 class MockSharedPreferences extends Mock implements SharedPreferences {}
 
+class MockSQLService extends Mock implements SQLLiteService {}
+
+class MockEmbeddedService extends Mock implements EmbeddedDataService {}
+
 void main() {
   MockSharedPreferences mockSharedPreferences = MockSharedPreferences();
-  DictionaryLocalDataSourceImpl dataSource =
-      DictionaryLocalDataSourceImpl(sharedPreferences: mockSharedPreferences);
+  MockSQLService mockSqlService = MockSQLService();
+  MockEmbeddedService mockEmbeddedService = MockEmbeddedService();
+  DictionaryLocalDataSourceImpl dataSource = DictionaryLocalDataSourceImpl(
+    sharedPreferences: mockSharedPreferences,
+    sqlService: mockSqlService,
+    embeddedDataService: mockEmbeddedService,
+  );
 
   setUp(
     () {
       mockSharedPreferences = MockSharedPreferences();
+      mockSqlService = MockSQLService();
+      mockEmbeddedService = MockEmbeddedService();
       dataSource = DictionaryLocalDataSourceImpl(
-          sharedPreferences: mockSharedPreferences);
+          sharedPreferences: mockSharedPreferences,
+          sqlService: mockSqlService,
+          embeddedDataService: mockEmbeddedService);
     },
   );
 
