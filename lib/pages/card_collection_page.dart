@@ -1,5 +1,4 @@
 import 'package:dictionary/bloc/card_collection_bloc.dart';
-import 'package:dictionary/bloc/progress_cubit.dart';
 import 'package:dictionary/pages/word_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -74,6 +74,10 @@ class UserDictionaryList with _$UserDictionaryList {
     required bool isLoading,
     required List<UserDictionary> userDictionaryList,
   }) = _UserDictionaryList;
+
+  factory UserDictionaryList.empty(
+    [@Default(false) bool isLoading, @Default([]) List<UserDictionary> userDictionaryList]
+  ) = _Empty;
   factory UserDictionaryList.fromJson(Map<String, dynamic> json) =>
       _$UserDictionaryListFromJson(json);
 }

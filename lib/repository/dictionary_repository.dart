@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:dictionary/models/dictionary.dart';
+import 'package:dictionary/features/dictionary/domain/entities/dictionary.dart';
 import '../repository/dictionary_repository_embedded.dart';
 
 class DictionaryRepositoryState {

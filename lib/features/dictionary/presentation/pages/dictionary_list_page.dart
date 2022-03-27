@@ -1,6 +1,6 @@
 import 'package:dictionary/bloc/card_collection_bloc.dart';
-import 'package:dictionary/bloc/dictionary_collection_bloc.dart';
-import 'package:dictionary/models/dictionary.dart';
+import 'package:dictionary/features/dictionary/domain/entities/dictionary.dart';
+import 'package:dictionary/features/dictionary/presentation/bloc/dictionary_collection_bloc.dart';
 import 'package:dictionary/pages/card_collection_page.dart';
 import 'package:dictionary/wigets/dinamic_image.dart';
 import 'package:flutter/material.dart';
@@ -25,19 +25,26 @@ class DictionaryListPage extends StatelessWidget {
       ),
       body: BlocBuilder<DictionaryCollectionBLoC, DictionaryCollectionState>(
         builder: (context, state) {
+          if (state == const DictionaryCollectionState.error() ) {
+            return const CircularProgressIndicator();
+          } 
+          if (state == const DictionaryCollectionState.fetching() ) {
+            return const CircularProgressIndicator();
+          } 
+          final list = state.data.userDictionaryList;
           return ListView.builder(
-              itemCount: state.data.length,
+              itemCount: list.length,
               itemBuilder: (_, index) {
-                var dictionary = state.data[index];
+                var userDictionary = list[index];
                 return Column(children: [
                   DictionaryTale(
                     taleHeight: taleHeight,
                     taleWidth: taleWidth,
-                    dictionary: dictionary,
+                    dictionary: userDictionary.dictionary,
                     imgHeight: imgHeight,
                     imgWidth: imgWidth,
                   ),
-                  if (index != state.data.length - 1) const Divider(),
+                  if (index != list.length - 1) const Divider(),
                 ]);
               });
         },

@@ -5,7 +5,7 @@ import 'package:uuid/uuid.dart';
 
 
 class AuthenticationRepository {
-  final Future<SharedPreferences> _prefs;
+  final SharedPreferences _prefs;
   final _controller = StreamController<AuthenticationState>();
 
   AuthenticationRepository(this._prefs);
@@ -28,8 +28,7 @@ class AuthenticationRepository {
   }
 
   Future<void> readStoredData() async {
-    final SharedPreferences prefs = await _prefs;
-    final String deviceID = prefs.getString('deviceID') ?? '';
+    final String deviceID = _prefs.getString('deviceID') ?? '';
 
     await Future.delayed(const Duration(seconds: 2));
 

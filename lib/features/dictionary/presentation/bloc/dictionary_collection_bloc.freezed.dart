@@ -187,7 +187,7 @@ class _$DictionaryCollectionStateTearOff {
     return const _FetchinState();
   }
 
-  _ReadyState ready({required List<Dictionary> data}) {
+  _ReadyState ready({required UserDictionaryList data}) {
     return _ReadyState(
       data: data,
     );
@@ -206,21 +206,21 @@ mixin _$DictionaryCollectionState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetching,
-    required TResult Function(List<Dictionary> data) ready,
+    required TResult Function(UserDictionaryList data) ready,
     required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? fetching,
-    TResult Function(List<Dictionary> data)? ready,
+    TResult Function(UserDictionaryList data)? ready,
     TResult Function()? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetching,
-    TResult Function(List<Dictionary> data)? ready,
+    TResult Function(UserDictionaryList data)? ready,
     TResult Function()? error,
     required TResult orElse(),
   }) =>
@@ -308,7 +308,7 @@ class _$_FetchinState extends _FetchinState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetching,
-    required TResult Function(List<Dictionary> data) ready,
+    required TResult Function(UserDictionaryList data) ready,
     required TResult Function() error,
   }) {
     return fetching();
@@ -318,7 +318,7 @@ class _$_FetchinState extends _FetchinState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? fetching,
-    TResult Function(List<Dictionary> data)? ready,
+    TResult Function(UserDictionaryList data)? ready,
     TResult Function()? error,
   }) {
     return fetching?.call();
@@ -328,7 +328,7 @@ class _$_FetchinState extends _FetchinState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetching,
-    TResult Function(List<Dictionary> data)? ready,
+    TResult Function(UserDictionaryList data)? ready,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -383,7 +383,9 @@ abstract class _$ReadyStateCopyWith<$Res> {
   factory _$ReadyStateCopyWith(
           _ReadyState value, $Res Function(_ReadyState) then) =
       __$ReadyStateCopyWithImpl<$Res>;
-  $Res call({List<Dictionary> data});
+  $Res call({UserDictionaryList data});
+
+  $UserDictionaryListCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -405,8 +407,15 @@ class __$ReadyStateCopyWithImpl<$Res>
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<Dictionary>,
+              as UserDictionaryList,
     ));
+  }
+
+  @override
+  $UserDictionaryListCopyWith<$Res> get data {
+    return $UserDictionaryListCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value));
+    });
   }
 }
 
@@ -416,7 +425,7 @@ class _$_ReadyState extends _ReadyState {
   const _$_ReadyState({required this.data}) : super._();
 
   @override
-  final List<Dictionary> data;
+  final UserDictionaryList data;
 
   @override
   String toString() {
@@ -444,7 +453,7 @@ class _$_ReadyState extends _ReadyState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetching,
-    required TResult Function(List<Dictionary> data) ready,
+    required TResult Function(UserDictionaryList data) ready,
     required TResult Function() error,
   }) {
     return ready(data);
@@ -454,7 +463,7 @@ class _$_ReadyState extends _ReadyState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? fetching,
-    TResult Function(List<Dictionary> data)? ready,
+    TResult Function(UserDictionaryList data)? ready,
     TResult Function()? error,
   }) {
     return ready?.call(data);
@@ -464,7 +473,7 @@ class _$_ReadyState extends _ReadyState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetching,
-    TResult Function(List<Dictionary> data)? ready,
+    TResult Function(UserDictionaryList data)? ready,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -510,10 +519,10 @@ class _$_ReadyState extends _ReadyState {
 }
 
 abstract class _ReadyState extends DictionaryCollectionState {
-  const factory _ReadyState({required List<Dictionary> data}) = _$_ReadyState;
+  const factory _ReadyState({required UserDictionaryList data}) = _$_ReadyState;
   const _ReadyState._() : super._();
 
-  List<Dictionary> get data;
+  UserDictionaryList get data;
   @JsonKey(ignore: true)
   _$ReadyStateCopyWith<_ReadyState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -561,7 +570,7 @@ class _$_ErrorState extends _ErrorState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetching,
-    required TResult Function(List<Dictionary> data) ready,
+    required TResult Function(UserDictionaryList data) ready,
     required TResult Function() error,
   }) {
     return error();
@@ -571,7 +580,7 @@ class _$_ErrorState extends _ErrorState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? fetching,
-    TResult Function(List<Dictionary> data)? ready,
+    TResult Function(UserDictionaryList data)? ready,
     TResult Function()? error,
   }) {
     return error?.call();
@@ -581,7 +590,7 @@ class _$_ErrorState extends _ErrorState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetching,
-    TResult Function(List<Dictionary> data)? ready,
+    TResult Function(UserDictionaryList data)? ready,
     TResult Function()? error,
     required TResult orElse(),
   }) {

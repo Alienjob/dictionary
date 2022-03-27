@@ -1,4 +1,4 @@
-import 'package:dictionary/repository/authentication_repository.dart';
+import 'package:dictionary/features/auth/data/repositories/authentication_repository.dart';
 
 class AuthenticatedRepository {
   AuthenticatedRepository({required AuthenticationRepository authRepository})

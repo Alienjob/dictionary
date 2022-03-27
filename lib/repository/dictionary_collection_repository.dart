@@ -1,12 +1,13 @@
 import 'dart:async';
 
-import 'package:dictionary/models/dictionary.dart';
-import 'package:dictionary/repository/authenticated_repository.dart';
-import 'package:dictionary/repository/authentication_repository.dart';
+
+import 'package:dictionary/core/repositories/authenticated_repository.dart';
+import 'package:dictionary/features/auth/data/repositories/authentication_repository.dart';
+import 'package:dictionary/features/dictionary/domain/entities/dictionary.dart';
 import 'package:dictionary/repository/dictionary_repository_embedded.dart';
 
-class DictionaryCollectionRepository extends AuthenticatedRepository {
-  DictionaryCollectionRepository(
+class _DictionaryCollectionRepository extends AuthenticatedRepository {
+  _DictionaryCollectionRepository(
       {required AuthenticationRepository authRepository})
       : super(authRepository: authRepository);
 

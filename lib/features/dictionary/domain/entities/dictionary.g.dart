@@ -98,6 +98,7 @@ _$_UserDictionaryList _$$_UserDictionaryListFromJson(
       userDictionaryList: (json['userDictionaryList'] as List<dynamic>)
           .map((e) => UserDictionary.fromJson(e as Map<String, dynamic>))
           .toList(),
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$_UserDictionaryListToJson(
@@ -105,4 +106,20 @@ Map<String, dynamic> _$$_UserDictionaryListToJson(
     <String, dynamic>{
       'isLoading': instance.isLoading,
       'userDictionaryList': instance.userDictionaryList,
+      'runtimeType': instance.$type,
+    };
+
+_$_Empty _$$_EmptyFromJson(Map<String, dynamic> json) => _$_Empty(
+      json['isLoading'] as bool? ?? false,
+      (json['userDictionaryList'] as List<dynamic>?)
+              ?.map((e) => UserDictionary.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$_EmptyToJson(_$_Empty instance) => <String, dynamic>{
+      'isLoading': instance.isLoading,
+      'userDictionaryList': instance.userDictionaryList,
+      'runtimeType': instance.$type,
     };

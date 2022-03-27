@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dictionary/repository/authentication_repository.dart';
+import 'package:dictionary/features/auth/data/repositories/authentication_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'auth_bloc.freezed.dart';

@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:dictionary/models/dictionary.dart';
-import 'package:dictionary/repository/dictionary_collection_repository.dart';
+import 'package:dartz/dartz.dart';
+import 'package:dictionary/features/dictionary/domain/entities/dictionary.dart';
+import 'package:dictionary/features/dictionary/domain/repositories/dictionary_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'dictionary_collection_bloc.freezed.dart';
@@ -16,34 +17,34 @@ class DictionaryCollectionEvent with _$DictionaryCollectionEvent {
 class DictionaryCollectionState with _$DictionaryCollectionState {
   const DictionaryCollectionState._();
 
-  List<Dictionary> get data => when(
-        fetching: List<Dictionary>.empty,
-        ready: (_data) => _data,
-        error: List<Dictionary>.empty,
-      );
   bool get ready => when<bool>(
         fetching: () => false,
         ready: (_) => true,
         error: () => false,
       );
 
+  UserDictionaryList get data => when<UserDictionaryList>(
+        fetching: () => UserDictionaryList.empty(),
+        ready: (data) => data,
+        error: () => UserDictionaryList.empty(),
+      );
+
   const factory DictionaryCollectionState.fetching() = _FetchinState;
   const factory DictionaryCollectionState.ready(
-      {required final List<Dictionary> data}) = _ReadyState;
+      {required final UserDictionaryList data}) = _ReadyState;
   const factory DictionaryCollectionState.error() = _ErrorState;
 }
 
 class DictionaryCollectionBLoC
     extends Bloc<DictionaryCollectionEvent, DictionaryCollectionState> {
-  DictionaryCollectionBLoC(
-      {required final DictionaryCollectionRepository repository})
+  DictionaryCollectionBLoC({required final DictionaryRepository repository})
       : super(const _FetchinState()) {
     on<_RequestEvent>(_onRequestEvent);
     _repository = repository;
     add(const _RequestEvent());
   }
 
-  late DictionaryCollectionRepository _repository;
+  late DictionaryRepository _repository;
 
   Future<void> _onRequestEvent(
     _RequestEvent event,
@@ -51,8 +52,11 @@ class DictionaryCollectionBLoC
   ) async {
     try {
       emit(const _FetchinState());
-      var data = await _repository.readCollection();
-      emit(_ReadyState(data: data));
+      var list = await _repository.getSplashDictionaryList();
+      list.fold(
+        (l) => emit(const _ErrorState()),
+        (r) => emit(_ReadyState(data: r)),
+      );
     } on Object catch (error, _) {
       emit(const _ErrorState());
       rethrow;

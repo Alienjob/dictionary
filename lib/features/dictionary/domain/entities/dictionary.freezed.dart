@@ -1164,7 +1164,16 @@ abstract class _UserDictionary implements UserDictionary {
 }
 
 UserDictionaryList _$UserDictionaryListFromJson(Map<String, dynamic> json) {
-  return _UserDictionaryList.fromJson(json);
+  switch (json['runtimeType']) {
+    case 'default':
+      return _UserDictionaryList.fromJson(json);
+    case 'empty':
+      return _Empty.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(json, 'runtimeType', 'UserDictionaryList',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
 }
 
 /// @nodoc
@@ -1177,6 +1186,15 @@ class _$UserDictionaryListTearOff {
     return _UserDictionaryList(
       isLoading: isLoading,
       userDictionaryList: userDictionaryList,
+    );
+  }
+
+  _Empty empty(
+      [bool isLoading = false,
+      List<UserDictionary> userDictionaryList = const []]) {
+    return _Empty(
+      isLoading,
+      userDictionaryList,
     );
   }
 
@@ -1194,6 +1212,51 @@ mixin _$UserDictionaryList {
   List<UserDictionary> get userDictionaryList =>
       throw _privateConstructorUsedError;
 
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(bool isLoading, List<UserDictionary> userDictionaryList)
+        $default, {
+    required TResult Function(
+            bool isLoading, List<UserDictionary> userDictionaryList)
+        empty,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function(bool isLoading, List<UserDictionary> userDictionaryList)?
+        $default, {
+    TResult Function(bool isLoading, List<UserDictionary> userDictionaryList)?
+        empty,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(bool isLoading, List<UserDictionary> userDictionaryList)?
+        $default, {
+    TResult Function(bool isLoading, List<UserDictionary> userDictionaryList)?
+        empty,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_UserDictionaryList value) $default, {
+    required TResult Function(_Empty value) empty,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_UserDictionaryList value)? $default, {
+    TResult Function(_Empty value)? empty,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_UserDictionaryList value)? $default, {
+    TResult Function(_Empty value)? empty,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UserDictionaryListCopyWith<UserDictionaryList> get copyWith =>
@@ -1278,7 +1341,10 @@ class __$UserDictionaryListCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_UserDictionaryList implements _UserDictionaryList {
   const _$_UserDictionaryList(
-      {required this.isLoading, required this.userDictionaryList});
+      {required this.isLoading,
+      required this.userDictionaryList,
+      String? $type})
+      : $type = $type ?? 'default';
 
   factory _$_UserDictionaryList.fromJson(Map<String, dynamic> json) =>
       _$$_UserDictionaryListFromJson(json);
@@ -1287,6 +1353,9 @@ class _$_UserDictionaryList implements _UserDictionaryList {
   final bool isLoading;
   @override
   final List<UserDictionary> userDictionaryList;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -1315,6 +1384,75 @@ class _$_UserDictionaryList implements _UserDictionaryList {
       __$UserDictionaryListCopyWithImpl<_UserDictionaryList>(this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(bool isLoading, List<UserDictionary> userDictionaryList)
+        $default, {
+    required TResult Function(
+            bool isLoading, List<UserDictionary> userDictionaryList)
+        empty,
+  }) {
+    return $default(isLoading, userDictionaryList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function(bool isLoading, List<UserDictionary> userDictionaryList)?
+        $default, {
+    TResult Function(bool isLoading, List<UserDictionary> userDictionaryList)?
+        empty,
+  }) {
+    return $default?.call(isLoading, userDictionaryList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(bool isLoading, List<UserDictionary> userDictionaryList)?
+        $default, {
+    TResult Function(bool isLoading, List<UserDictionary> userDictionaryList)?
+        empty,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(isLoading, userDictionaryList);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_UserDictionaryList value) $default, {
+    required TResult Function(_Empty value) empty,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_UserDictionaryList value)? $default, {
+    TResult Function(_Empty value)? empty,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_UserDictionaryList value)? $default, {
+    TResult Function(_Empty value)? empty,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
     return _$$_UserDictionaryListToJson(this);
   }
@@ -1337,4 +1475,178 @@ abstract class _UserDictionaryList implements UserDictionaryList {
   @JsonKey(ignore: true)
   _$UserDictionaryListCopyWith<_UserDictionaryList> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$EmptyCopyWith<$Res>
+    implements $UserDictionaryListCopyWith<$Res> {
+  factory _$EmptyCopyWith(_Empty value, $Res Function(_Empty) then) =
+      __$EmptyCopyWithImpl<$Res>;
+  @override
+  $Res call({bool isLoading, List<UserDictionary> userDictionaryList});
+}
+
+/// @nodoc
+class __$EmptyCopyWithImpl<$Res> extends _$UserDictionaryListCopyWithImpl<$Res>
+    implements _$EmptyCopyWith<$Res> {
+  __$EmptyCopyWithImpl(_Empty _value, $Res Function(_Empty) _then)
+      : super(_value, (v) => _then(v as _Empty));
+
+  @override
+  _Empty get _value => super._value as _Empty;
+
+  @override
+  $Res call({
+    Object? isLoading = freezed,
+    Object? userDictionaryList = freezed,
+  }) {
+    return _then(_Empty(
+      isLoading == freezed
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      userDictionaryList == freezed
+          ? _value.userDictionaryList
+          : userDictionaryList // ignore: cast_nullable_to_non_nullable
+              as List<UserDictionary>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Empty implements _Empty {
+  _$_Empty(
+      [this.isLoading = false,
+      this.userDictionaryList = const [],
+      String? $type])
+      : $type = $type ?? 'empty';
+
+  factory _$_Empty.fromJson(Map<String, dynamic> json) =>
+      _$$_EmptyFromJson(json);
+
+  @JsonKey()
+  @override
+  final bool isLoading;
+  @JsonKey()
+  @override
+  final List<UserDictionary> userDictionaryList;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'UserDictionaryList.empty(isLoading: $isLoading, userDictionaryList: $userDictionaryList)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _Empty &&
+            const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
+            const DeepCollectionEquality()
+                .equals(other.userDictionaryList, userDictionaryList));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(isLoading),
+      const DeepCollectionEquality().hash(userDictionaryList));
+
+  @JsonKey(ignore: true)
+  @override
+  _$EmptyCopyWith<_Empty> get copyWith =>
+      __$EmptyCopyWithImpl<_Empty>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(bool isLoading, List<UserDictionary> userDictionaryList)
+        $default, {
+    required TResult Function(
+            bool isLoading, List<UserDictionary> userDictionaryList)
+        empty,
+  }) {
+    return empty(isLoading, userDictionaryList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function(bool isLoading, List<UserDictionary> userDictionaryList)?
+        $default, {
+    TResult Function(bool isLoading, List<UserDictionary> userDictionaryList)?
+        empty,
+  }) {
+    return empty?.call(isLoading, userDictionaryList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(bool isLoading, List<UserDictionary> userDictionaryList)?
+        $default, {
+    TResult Function(bool isLoading, List<UserDictionary> userDictionaryList)?
+        empty,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(isLoading, userDictionaryList);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_UserDictionaryList value) $default, {
+    required TResult Function(_Empty value) empty,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_UserDictionaryList value)? $default, {
+    TResult Function(_Empty value)? empty,
+  }) {
+    return empty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_UserDictionaryList value)? $default, {
+    TResult Function(_Empty value)? empty,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_EmptyToJson(this);
+  }
+}
+
+abstract class _Empty implements UserDictionaryList {
+  factory _Empty([bool isLoading, List<UserDictionary> userDictionaryList]) =
+      _$_Empty;
+
+  factory _Empty.fromJson(Map<String, dynamic> json) = _$_Empty.fromJson;
+
+  @override
+  bool get isLoading;
+  @override
+  List<UserDictionary> get userDictionaryList;
+  @override
+  @JsonKey(ignore: true)
+  _$EmptyCopyWith<_Empty> get copyWith => throw _privateConstructorUsedError;
 }

@@ -1,23 +1,20 @@
-import 'package:dictionary/bloc/auth_bloc.dart';
+import 'package:dictionary/dependency_injection.dart';
+import 'package:dictionary/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:dictionary/bloc/card_collection_bloc.dart';
-import 'package:dictionary/bloc/dictionary_collection_bloc.dart';
+import 'package:dictionary/features/dictionary/presentation/bloc/dictionary_collection_bloc.dart';
 import 'package:dictionary/pages/card_collection_page.dart';
-import 'package:dictionary/pages/dictionary_list_page.dart';
-import 'package:dictionary/repository/card_collection_repository.dart';
-import 'package:dictionary/repository/dictionary_collection_repository.dart';
-import 'package:dictionary/services/sql_lite.dart';
+import 'package:dictionary/features/dictionary/presentation/pages/dictionary_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import './repository/authentication_repository.dart';
 
 import './bloc/observer_bloc.dart';
 
 import 'pages/logo_page.dart';
-import './pages/login_page.dart';
+import 'features/auth/presentation/pages/login_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await init();
   BlocOverrides.runZoned(
     () => {runApp(const MyApp())},
     blocObserver: DictionaryBlocObserver(),
@@ -29,29 +26,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var localSql = SQLLiteService();
-    var prefs = SharedPreferences.getInstance();
-    var authenticationRepository = AuthenticationRepository(prefs);
-
     return MultiBlocProvider(
       providers: [
-        BlocProvider<AuthBLoC>(
-          create: (BuildContext context) => AuthBLoC(
-            authenticationRepository: authenticationRepository,
-          ),
-        ),
+        BlocProvider<AuthBLoC>(create: (BuildContext context) => sl()),
         BlocProvider<DictionaryCollectionBLoC>(
-          create: (BuildContext context) => DictionaryCollectionBLoC(
-            repository: DictionaryCollectionRepository(
-                authRepository: authenticationRepository),
-          ),
-        ),
+            create: (BuildContext context) => sl()),
         BlocProvider<CardCollectionBLoC>(
-          create: (BuildContext context) => CardCollectionBLoC(
-            repository: CardCollectionRepository(
-                authRepository: authenticationRepository, localSql: localSql),
-          ),
-        ),
+            create: (BuildContext context) => sl()),
       ],
       child: MaterialApp(
         title: 'Dictionary',

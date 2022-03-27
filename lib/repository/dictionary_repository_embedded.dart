@@ -1,5 +1,5 @@
+import 'package:dictionary/features/dictionary/domain/entities/dictionary.dart';
 import 'package:dictionary/models/card.dart';
-import 'package:dictionary/models/dictionary.dart';
 import 'package:dictionary/models/dictionary_image.dart';
 
 List<Dictionary> embeddedDictionaryes() {

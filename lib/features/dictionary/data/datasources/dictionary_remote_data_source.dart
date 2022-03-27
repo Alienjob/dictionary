@@ -1,3 +1,4 @@
+import 'package:dictionary/features/auth/data/repositories/authentication_repository.dart';
 import 'package:dictionary/features/dictionary/domain/entities/dictionary.dart';
 import 'package:dictionary/services/remote_data_service.dart';
 
@@ -17,11 +18,11 @@ abstract class DictionaryRemoteDataSource {
 }
 
 class DictionaryRemoteDataSourceImpl implements DictionaryRemoteDataSource {
-  final UserData userData;
+  final AuthenticationRepository authenticationRepository;
   final RemoteDataService remoteDataService;
 
   DictionaryRemoteDataSourceImpl(
-      {required this.remoteDataService, required this.userData});
+      {required this.remoteDataService, required this.authenticationRepository});
 
   @override
   Future<List<Dictionary>> getUserDictionaryes() {
