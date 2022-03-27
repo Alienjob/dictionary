@@ -1,7 +1,7 @@
-import 'package:dictionary/bloc/card_collection_bloc.dart';
+import 'package:dictionary/features/cards/presentation/bloc/card_collection_bloc.dart';
 import 'package:dictionary/features/dictionary/domain/entities/dictionary.dart';
 import 'package:dictionary/features/dictionary/presentation/bloc/dictionary_collection_bloc.dart';
-import 'package:dictionary/pages/card_collection_page.dart';
+import 'package:dictionary/features/cards/presentation/pages/card_collection_page.dart';
 import 'package:dictionary/wigets/dinamic_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

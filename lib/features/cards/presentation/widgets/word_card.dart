@@ -1,6 +1,6 @@
+import 'package:dictionary/features/cards/presentation/bloc/card_collection_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dictionary/bloc/card_collection_bloc.dart';
 
 class WordCard extends StatefulWidget {
   final int index;

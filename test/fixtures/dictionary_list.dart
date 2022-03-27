@@ -1,5 +1,5 @@
+import 'package:dictionary/core/domain/entities/dictionary_image.dart';
 import 'package:dictionary/features/dictionary/domain/entities/dictionary.dart';
-import 'package:dictionary/models/dictionary_image.dart';
 
 abstract class DictionaryListFixture {
   static List<Dictionary> get two {

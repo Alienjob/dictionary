@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:dictionary/core/error/failures.dart';
-import 'package:dictionary/core/usecases/usecase.dart';
+import 'package:dictionary/core/domain/error/failures.dart';
+import 'package:dictionary/core/domain/usecases/usecase.dart';
 import 'package:dictionary/features/dictionary/domain/repositories/dictionary_repository.dart';
 import 'package:dictionary/features/dictionary/domain/entities/dictionary.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

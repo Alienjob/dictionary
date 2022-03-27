@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:dictionary/models/card.dart';
-import 'package:dictionary/repository/card_collection_repository.dart';
+import 'package:dictionary/features/cards/domain/entities/card.dart';
+
+import 'package:dictionary/features/cards/data/repositories/card_collection_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'card_collection_bloc.freezed.dart';

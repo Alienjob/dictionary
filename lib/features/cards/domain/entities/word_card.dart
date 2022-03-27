@@ -1,5 +1,5 @@
-import 'package:dictionary/models/card.dart';
-import 'package:dictionary/models/user_card.dart';
+import 'package:dictionary/features/cards/domain/entities/card.dart';
+import 'package:dictionary/features/cards/domain/entities/user_card.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 

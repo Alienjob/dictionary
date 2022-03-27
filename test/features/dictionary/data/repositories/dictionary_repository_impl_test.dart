@@ -1,12 +1,11 @@
 import 'package:dartz/dartz.dart';
-import 'package:dictionary/core/error/exeptions.dart';
-import 'package:dictionary/core/error/failures.dart';
-import 'package:dictionary/core/network/network_info.dart';
+import 'package:dictionary/core/data/network/network_info.dart';
+import 'package:dictionary/core/domain/error/exeptions.dart';
+import 'package:dictionary/core/domain/error/failures.dart';
 import 'package:dictionary/features/dictionary/data/datasources/dictionary_local_data_source.dart';
 import 'package:dictionary/features/dictionary/data/datasources/dictionary_remote_data_source.dart';
 import 'package:dictionary/features/dictionary/data/repositories/dictionary_repository_impl.dart';
 import 'package:dictionary/features/dictionary/domain/entities/dictionary.dart';
-import 'package:dictionary/models/dictionary_image.dart';
 import 'package:dictionary/services/remote_data_service.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';

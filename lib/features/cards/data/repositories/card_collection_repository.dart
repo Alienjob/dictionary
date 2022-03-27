@@ -1,24 +1,25 @@
 import 'dart:async';
 
-import 'package:dictionary/models/card.dart';
 import 'package:dictionary/features/auth/data/repositories/authentication_repository.dart';
-import 'package:dictionary/repository/dictionary_repository_embedded.dart';
+import 'package:dictionary/features/cards/domain/entities/card.dart';
+import 'package:dictionary/services/embedded_data_service.dart';
 import 'package:dictionary/services/sql_lite.dart';
 
 class CardCollectionRepository {
   CardCollectionRepository(
-      {required AuthenticationRepository authRepository,
+      {required AuthenticationRepository authRepository,required this.embeddedDataService,
       required SQLLiteService localSql})
       : _localSql = localSql;
 
   final SQLLiteService _localSql;
+  final EmbeddedDataService embeddedDataService;
   String _collectionKey = '';
 
   Future<List<CardData>> readCollection(final String collectionKey) async {
     List<CardData> result = [];
     _collectionKey = collectionKey;
-    var cardKeys = embeddedDictionaryesData(collectionKey);
-    var cards = embeddedCards();
+    var cardKeys = embeddedDataService.embeddedDictionaryesData(_collectionKey);
+    var cards = embeddedDataService.embeddedCards();
     for (var cardKey in cardKeys) {
       var card = cards[cardKey];
       if (card != null) {

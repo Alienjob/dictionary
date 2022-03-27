@@ -1,4 +1,4 @@
-import 'package:dictionary/models/dictionary_image.dart';
+import 'package:dictionary/core/domain/entities/dictionary_image.dart';
 import 'package:flutter/material.dart';
 
 class DynamicImage extends StatelessWidget {

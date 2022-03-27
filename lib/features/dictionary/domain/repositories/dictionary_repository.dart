@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:dictionary/core/error/failures.dart';
+import 'package:dictionary/core/domain/error/failures.dart';
 import 'package:dictionary/features/dictionary/domain/entities/dictionary.dart';
 
 abstract class DictionaryRepository {

@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_print
 
-import 'package:dictionary/core/error/exeptions.dart';
+import 'package:dictionary/core/domain/error/exeptions.dart';
 import 'package:dictionary/features/dictionary/domain/entities/dictionary.dart';
 import 'package:sqflite/sqflite.dart';
 
