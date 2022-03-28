@@ -1,15 +1,18 @@
-import 'package:dictionary/core/presentation/bloc/observer_bloc.dart';
-import 'package:dictionary/core/presentation/pages/logo_page.dart';
-import 'package:dictionary/dependency_injection.dart';
-import 'package:dictionary/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:dictionary/features/cards/presentation/bloc/card_collection_bloc.dart';
-import 'package:dictionary/features/dictionary/presentation/bloc/dictionary_collection_bloc.dart';
-import 'package:dictionary/features/cards/presentation/pages/card_collection_page.dart';
-import 'package:dictionary/features/dictionary/presentation/pages/dictionary_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'features/auth/presentation/pages/login_page.dart';
+import 'package:dictionary/dependency_injection.dart';
+
+import 'package:dictionary/core/presentation/bloc/observer_bloc.dart';
+import 'package:dictionary/core/presentation/pages/logo_page.dart';
+
+import 'package:dictionary/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:dictionary/features/cards/presentation/bloc/card_collection_bloc.dart';
+import 'package:dictionary/features/dictionary/presentation/bloc/dictionary_collection_bloc.dart';
+
+import 'package:dictionary/features/cards/presentation/pages/card_collection_page.dart';
+import 'package:dictionary/features/dictionary/presentation/pages/dictionary_list_page.dart';
+import 'package:dictionary/features/auth/presentation/pages/login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -12,7 +12,7 @@ class GetUserDictionaryList implements UseCase<UserDictionaryList, NoParams> {
   GetUserDictionaryList({required this.repository});
 
   @override
-  Future<Either<Failure, UserDictionaryList>> call(NoParams) async {
+  Future<Either<Failure, UserDictionaryList>> call(NoParams _) async {
     return await repository.getCachedDictionaryList();
   }
 }

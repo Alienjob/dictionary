@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DictionaryBlocObserver extends BlocObserver {
   @override
+  // ignore: unnecessary_overrides
   void onEvent(Bloc bloc, Object? event) {
     super.onEvent(bloc, event);
     //print(event);

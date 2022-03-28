@@ -64,6 +64,7 @@ class DictionaryLocalDataSourceImpl implements DictionaryLocalDataSource {
       }
     }
 
+    // TODO : add test to get dictionary proggress
     var progressData =
         await sqlService.dictionaryProgress(dictionaryKeys: dictionaryKeys);
     List<UserDictionary> userDictionaryes = [];

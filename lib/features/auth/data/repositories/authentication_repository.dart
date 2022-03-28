@@ -34,10 +34,8 @@ class AuthenticationRepository {
 
     if (deviceID == '') {
       _updateDeviceID(AuthenticationStateNoExist());
-      print('AuthenticationStateNoExist');
     } else {
       _updateDeviceID(AuthenticationStateExist(deviceID: deviceID));
-      print(['AuthenticationStateExist', deviceID].join('-'));
     }
   }
 
@@ -48,22 +46,15 @@ class AuthenticationRepository {
   }
 
   Future<void> storeDeviceID(String deviceID) async {
-    final SharedPreferences prefs = await _prefs;
-
-    await Future.delayed(const Duration(seconds: 2));
-
-    await prefs.setString('deviceID', deviceID);
+    _prefs.setString('deviceID', deviceID);
     _updateDeviceID(AuthenticationStateExist(deviceID: deviceID));
-    print(['AuthenticationStateExist', deviceID].join('-'));
   }
 
   Future<void> clearDeviceID() async {
     await Future.delayed(const Duration(seconds: 2));
 
-    final SharedPreferences prefs = await _prefs;
-    await prefs.remove('deviceID');
+    await _prefs.remove('deviceID');
     _updateDeviceID(AuthenticationStateNoExist());
-    print('AuthenticationStateNoExist');
   }
 
   void dispose() => _controller.close();

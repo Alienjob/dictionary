@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:dictionary/features/dictionary/domain/entities/dictionary.dart';
 import 'package:dictionary/features/dictionary/domain/repositories/dictionary_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

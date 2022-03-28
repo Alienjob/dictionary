@@ -23,7 +23,7 @@ class LoginPage extends StatelessWidget {
                     children: [
                       const Text('You have an existing account'),
                       FloatingActionButton(
-                        child: Icon(Icons.account_box),
+                        child: const Icon(Icons.account_box),
                         onPressed: () {
                           BlocProvider.of<AuthBLoC>(context)
                               .add(const AuthEvent.logout());
@@ -36,14 +36,14 @@ class LoginPage extends StatelessWidget {
                     children: [
                       const Text('You don\'t have an existing account.'),
                       FloatingActionButton(
-                        child: Icon(Icons.account_box),
+                        child: const Icon(Icons.account_box),
                         onPressed: () {
                           BlocProvider.of<AuthBLoC>(context)
                               .add(const AuthEvent.login());
                         },
                       ),
                       FloatingActionButton(
-                        child: Icon(Icons.new_label),
+                        child: const Icon(Icons.new_label),
                         onPressed: () {
                           BlocProvider.of<AuthBLoC>(context)
                               .add(const AuthEvent.singin());
