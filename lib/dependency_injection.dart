@@ -11,7 +11,7 @@ import 'package:dictionary/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:dictionary/features/dictionary/data/datasources/dictionary_local_data_source.dart';
 import 'package:dictionary/features/dictionary/presentation/bloc/dictionary_collection_bloc.dart';
 import 'package:dictionary/features/cards/data/repositories/card_collection_repository.dart';
-import 'package:dictionary/services/sql_lite.dart';
+import 'package:dictionary/services/local_sql/sql_lite.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -28,10 +28,9 @@ Future<void> init() async {
       () => NetworkInfoImpl(connectionChecker: sl()));
   sl.registerLazySingleton<RemoteDataService>(() => RemoteDataServiceImpl());
   sl.registerLazySingleton<DictionaryRemoteDataSource>(
-      () => DictionaryRemoteDataSourceImpl(
-            remoteDataService: sl(),
-            authenticationRepository: sl()),
-          );
+    () => DictionaryRemoteDataSourceImpl(
+        remoteDataService: sl(), authenticationRepository: sl()),
+  );
 
   sl.registerLazySingleton(() => AuthenticationRepository(prefs));
   sl.registerLazySingleton<DictionaryLocalDataSource>(
@@ -40,12 +39,9 @@ Future<void> init() async {
             sharedPreferences: sl(),
             sqlService: sl(),
           ));
-  sl.registerLazySingleton<CardCollectionRepository>(
-      () => CardCollectionRepository(
-            authRepository: sl(),
-            localSql: sl(),
-            embeddedDataService: sl()
-          ));
+  sl.registerLazySingleton<CardCollectionRepository>(() =>
+      CardCollectionRepository(
+          authRepository: sl(), localSql: sl(), embeddedDataService: sl()));
   sl.registerLazySingleton<DictionaryRepository>(() => DictionaryRepositoryImpl(
         localDataSource: sl(),
         networkInfo: sl(),

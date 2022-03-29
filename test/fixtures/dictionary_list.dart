@@ -18,7 +18,7 @@ abstract class DictionaryListFixture {
         title: 'test 2',
         img: DictionaryImage(
           path: '',
-          pathType: DictionaryImagePathType.url,
+          pathType: DictionaryImagePathType.embedded,
         ),
         description: '',
       ),
@@ -27,7 +27,7 @@ abstract class DictionaryListFixture {
 }
 
 abstract class UserDictionaryListFixture {
-  static List<UserDictionary> get two {
+  static List<UserDictionary> get splash {
     return [
       UserDictionary(
         dictionary: Dictionary(
@@ -45,7 +45,7 @@ abstract class UserDictionaryListFixture {
           repeateCards: 0,
         ),
       ),
-            UserDictionary(
+      UserDictionary(
         dictionary: Dictionary(
           key: '2',
           title: 'test 2',
@@ -59,6 +59,43 @@ abstract class UserDictionaryListFixture {
           dailyProgress: [],
           newCards: 0,
           repeateCards: 0,
+        ),
+      ),
+    ];
+  }
+
+  static List<UserDictionary> get withProgress {
+    return [
+      UserDictionary(
+        dictionary: Dictionary(
+          key: '1',
+          title: 'test 1',
+          img: DictionaryImage(
+            path: '',
+            pathType: DictionaryImagePathType.embedded,
+          ),
+          description: '',
+        ),
+        progress: const UserDictionaryProgress(
+          dailyProgress: [UserDayProgress(progress: 1, day: 1)],
+          newCards: 1,
+          repeateCards: 1,
+        ),
+      ),
+      UserDictionary(
+        dictionary: Dictionary(
+          key: '2',
+          title: 'test 2',
+          img: DictionaryImage(
+            path: '',
+            pathType: DictionaryImagePathType.embedded,
+          ),
+          description: '',
+        ),
+        progress: const UserDictionaryProgress(
+          dailyProgress: [UserDayProgress(progress: 2, day: 2)],
+          newCards: 2,
+          repeateCards: 2,
         ),
       ),
     ];

@@ -18,7 +18,24 @@ class SQLLiteService {
 
   Future<Map<String, UserDictionaryProgress>> dictionaryProgress(
       {required List<String> dictionaryKeys}) async {
-    return <String, UserDictionaryProgress>{};
+    Map<String, UserDictionaryProgress> result = {};
+    var _database = await database();
+
+    for (var collectionKey in dictionaryKeys) {
+      _database.execute(
+          'SELECT FROM (SELECT SUM(remember) as remember, SUM(1-remember) as forget, day FROM anwers WHERE collectionKey = ? GROUP BY day ORDER BY day LIMIT 5 ',
+          [collectionKey]).then((value) => null);
+    }
+    // var _database = await database();
+    // await _database.insert('anwers', {
+    //   'collectionKey': collectionKey,
+    //   'cardKey': cardKey,
+    //   'remember': remember,
+    //   'date': _currentTimeInSeconds(),
+    //   'day': _currentTimeInDays()
+    // });
+
+    return result;
   }
 
   Future<Database> database() async {
@@ -40,16 +57,6 @@ class SQLLiteService {
       {required String collectionKey,
       required String cardKey,
       required int remember}) async {
-    print([
-      'SQLLiteService',
-      'saveAnswer',
-      collectionKey,
-      cardKey,
-      remember.toString(),
-      _currentTimeInSeconds(),
-      _currentTimeInDays()
-    ].join('-'));
-
     var _database = await database();
     await _database.insert('anwers', {
       'collectionKey': collectionKey,

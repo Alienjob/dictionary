@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dictionary/features/dictionary/domain/entities/dictionary.dart';
 import 'package:dictionary/services/embedded_data_service.dart';
-import 'package:dictionary/services/sql_lite.dart';
+import 'package:dictionary/services/local_sql/sql_lite.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class DictionaryLocalDataSource {
@@ -64,7 +64,6 @@ class DictionaryLocalDataSourceImpl implements DictionaryLocalDataSource {
       }
     }
 
-    // TODO : add test to get dictionary proggress
     var progressData =
         await sqlService.dictionaryProgress(dictionaryKeys: dictionaryKeys);
     List<UserDictionary> userDictionaryes = [];

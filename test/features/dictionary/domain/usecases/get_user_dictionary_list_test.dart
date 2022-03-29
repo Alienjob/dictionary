@@ -20,7 +20,8 @@ void main() {
     usecase = GetUserDictionaryList(repository: mockDictionaryRepository);
   });
 
-  final tUserDictionaryList = UserDictionaryList(isLoading: false, userDictionaryList: UserDictionaryListFixture.two) ;
+  final tUserDictionaryList = UserDictionaryList(
+      isLoading: false, userDictionaryList: UserDictionaryListFixture.splash);
 
   test('should get user dictionary list from the repositopy', () async {
     // arrange

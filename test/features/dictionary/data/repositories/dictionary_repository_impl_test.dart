@@ -15,19 +15,22 @@ import '../../../../fixtures/dictionary_list.dart';
 class MockLocalDataSource extends Mock implements DictionaryLocalDataSource {}
 
 class MockNetworkInfo extends Mock implements NetworkInfo {}
+
 class MockRemoteDataService extends Mock implements RemoteDataService {}
-class MockDictionaryRemoteDataSource extends Mock implements DictionaryRemoteDataSource {}
+
+class MockDictionaryRemoteDataSource extends Mock
+    implements DictionaryRemoteDataSource {}
 
 void main() async {
   MockLocalDataSource mockLocalDataSource = MockLocalDataSource();
   MockNetworkInfo mockNetworkInfo = MockNetworkInfo();
-  MockDictionaryRemoteDataSource dictionaryRemoteDataSource = MockDictionaryRemoteDataSource();
+  MockDictionaryRemoteDataSource dictionaryRemoteDataSource =
+      MockDictionaryRemoteDataSource();
 
   DictionaryRepositoryImpl repository = DictionaryRepositoryImpl(
-    localDataSource: mockLocalDataSource,
-    networkInfo: mockNetworkInfo,
-    remoteDataSource: dictionaryRemoteDataSource
-  );
+      localDataSource: mockLocalDataSource,
+      networkInfo: mockNetworkInfo,
+      remoteDataSource: dictionaryRemoteDataSource);
 
   setUp(() {
     mockLocalDataSource = MockLocalDataSource();
@@ -35,14 +38,13 @@ void main() async {
     dictionaryRemoteDataSource = MockDictionaryRemoteDataSource();
 
     repository = DictionaryRepositoryImpl(
-      localDataSource: mockLocalDataSource,
-      networkInfo: mockNetworkInfo,
-      remoteDataSource: dictionaryRemoteDataSource
-
-    );
+        localDataSource: mockLocalDataSource,
+        networkInfo: mockNetworkInfo,
+        remoteDataSource: dictionaryRemoteDataSource);
   });
 
-  final tUserDictionaryList = UserDictionaryList(isLoading: false, userDictionaryList: UserDictionaryListFixture.two) ;
+  final tUserDictionaryList = UserDictionaryList(
+      isLoading: false, userDictionaryList: UserDictionaryListFixture.splash);
 
   group('get dictionary list', () {
     test(
