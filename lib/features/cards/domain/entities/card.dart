@@ -10,7 +10,6 @@ class CardData with _$CardData {
   const factory CardData.fromData(
       {required String key,
       required String question,
-      required String context,
       required String answer,
       required String img,
       required String transcription,
@@ -22,8 +21,6 @@ class CardData with _$CardData {
   String get key => map(fromData: (value) => value.key, empty: (_) => '');
   String get question =>
       map(fromData: (value) => value.question, empty: (_) => '');
-  String get context =>
-      map(fromData: (value) => value.context, empty: (_) => '');
   String get answer => map(fromData: (value) => value.answer, empty: (_) => '');
   String get img => map(fromData: (value) => value.img, empty: (_) => '');
   String get transcription =>

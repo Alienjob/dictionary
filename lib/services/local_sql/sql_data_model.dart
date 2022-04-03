@@ -8,11 +8,11 @@ class Decks extends Table {
   TextColumn get img => text()();
 }
 
-class DeckFakts extends Table {
+class DeckCards extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get key => text()();
   TextColumn get deck => text()();
-  TextColumn get fakt => text()();
+  TextColumn get card => text()();
 }
 
 class Fakts extends Table {
@@ -35,5 +35,5 @@ class Imgs extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get key => text()();
   TextColumn get path => text()();
-  TextColumn get pathType => text()();
+  IntColumn get pathType => integer()();
 }

@@ -294,27 +294,27 @@ class $DecksTable extends Decks with TableInfo<$DecksTable, Deck> {
   }
 }
 
-class DeckFakt extends DataClass implements Insertable<DeckFakt> {
+class DeckCard extends DataClass implements Insertable<DeckCard> {
   final int id;
   final String key;
   final String deck;
-  final String fakt;
-  DeckFakt(
+  final String card;
+  DeckCard(
       {required this.id,
       required this.key,
       required this.deck,
-      required this.fakt});
-  factory DeckFakt.fromData(Map<String, dynamic> data, {String? prefix}) {
+      required this.card});
+  factory DeckCard.fromData(Map<String, dynamic> data, {String? prefix}) {
     final effectivePrefix = prefix ?? '';
-    return DeckFakt(
+    return DeckCard(
       id: const IntType()
           .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
       key: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}key'])!,
       deck: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}deck'])!,
-      fakt: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}fakt'])!,
+      card: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}card'])!,
     );
   }
   @override
@@ -323,27 +323,27 @@ class DeckFakt extends DataClass implements Insertable<DeckFakt> {
     map['id'] = Variable<int>(id);
     map['key'] = Variable<String>(key);
     map['deck'] = Variable<String>(deck);
-    map['fakt'] = Variable<String>(fakt);
+    map['card'] = Variable<String>(card);
     return map;
   }
 
-  DeckFaktsCompanion toCompanion(bool nullToAbsent) {
-    return DeckFaktsCompanion(
+  DeckCardsCompanion toCompanion(bool nullToAbsent) {
+    return DeckCardsCompanion(
       id: Value(id),
       key: Value(key),
       deck: Value(deck),
-      fakt: Value(fakt),
+      card: Value(card),
     );
   }
 
-  factory DeckFakt.fromJson(Map<String, dynamic> json,
+  factory DeckCard.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return DeckFakt(
+    return DeckCard(
       id: serializer.fromJson<int>(json['id']),
       key: serializer.fromJson<String>(json['key']),
       deck: serializer.fromJson<String>(json['deck']),
-      fakt: serializer.fromJson<String>(json['fakt']),
+      card: serializer.fromJson<String>(json['card']),
     );
   }
   @override
@@ -353,83 +353,83 @@ class DeckFakt extends DataClass implements Insertable<DeckFakt> {
       'id': serializer.toJson<int>(id),
       'key': serializer.toJson<String>(key),
       'deck': serializer.toJson<String>(deck),
-      'fakt': serializer.toJson<String>(fakt),
+      'card': serializer.toJson<String>(card),
     };
   }
 
-  DeckFakt copyWith({int? id, String? key, String? deck, String? fakt}) =>
-      DeckFakt(
+  DeckCard copyWith({int? id, String? key, String? deck, String? card}) =>
+      DeckCard(
         id: id ?? this.id,
         key: key ?? this.key,
         deck: deck ?? this.deck,
-        fakt: fakt ?? this.fakt,
+        card: card ?? this.card,
       );
   @override
   String toString() {
-    return (StringBuffer('DeckFakt(')
+    return (StringBuffer('DeckCard(')
           ..write('id: $id, ')
           ..write('key: $key, ')
           ..write('deck: $deck, ')
-          ..write('fakt: $fakt')
+          ..write('card: $card')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, key, deck, fakt);
+  int get hashCode => Object.hash(id, key, deck, card);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is DeckFakt &&
+      (other is DeckCard &&
           other.id == this.id &&
           other.key == this.key &&
           other.deck == this.deck &&
-          other.fakt == this.fakt);
+          other.card == this.card);
 }
 
-class DeckFaktsCompanion extends UpdateCompanion<DeckFakt> {
+class DeckCardsCompanion extends UpdateCompanion<DeckCard> {
   final Value<int> id;
   final Value<String> key;
   final Value<String> deck;
-  final Value<String> fakt;
-  const DeckFaktsCompanion({
+  final Value<String> card;
+  const DeckCardsCompanion({
     this.id = const Value.absent(),
     this.key = const Value.absent(),
     this.deck = const Value.absent(),
-    this.fakt = const Value.absent(),
+    this.card = const Value.absent(),
   });
-  DeckFaktsCompanion.insert({
+  DeckCardsCompanion.insert({
     this.id = const Value.absent(),
     required String key,
     required String deck,
-    required String fakt,
+    required String card,
   })  : key = Value(key),
         deck = Value(deck),
-        fakt = Value(fakt);
-  static Insertable<DeckFakt> custom({
+        card = Value(card);
+  static Insertable<DeckCard> custom({
     Expression<int>? id,
     Expression<String>? key,
     Expression<String>? deck,
-    Expression<String>? fakt,
+    Expression<String>? card,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (key != null) 'key': key,
       if (deck != null) 'deck': deck,
-      if (fakt != null) 'fakt': fakt,
+      if (card != null) 'card': card,
     });
   }
 
-  DeckFaktsCompanion copyWith(
+  DeckCardsCompanion copyWith(
       {Value<int>? id,
       Value<String>? key,
       Value<String>? deck,
-      Value<String>? fakt}) {
-    return DeckFaktsCompanion(
+      Value<String>? card}) {
+    return DeckCardsCompanion(
       id: id ?? this.id,
       key: key ?? this.key,
       deck: deck ?? this.deck,
-      fakt: fakt ?? this.fakt,
+      card: card ?? this.card,
     );
   }
 
@@ -445,30 +445,30 @@ class DeckFaktsCompanion extends UpdateCompanion<DeckFakt> {
     if (deck.present) {
       map['deck'] = Variable<String>(deck.value);
     }
-    if (fakt.present) {
-      map['fakt'] = Variable<String>(fakt.value);
+    if (card.present) {
+      map['card'] = Variable<String>(card.value);
     }
     return map;
   }
 
   @override
   String toString() {
-    return (StringBuffer('DeckFaktsCompanion(')
+    return (StringBuffer('DeckCardsCompanion(')
           ..write('id: $id, ')
           ..write('key: $key, ')
           ..write('deck: $deck, ')
-          ..write('fakt: $fakt')
+          ..write('card: $card')
           ..write(')'))
         .toString();
   }
 }
 
-class $DeckFaktsTable extends DeckFakts
-    with TableInfo<$DeckFaktsTable, DeckFakt> {
+class $DeckCardsTable extends DeckCards
+    with TableInfo<$DeckCardsTable, DeckCard> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $DeckFaktsTable(this.attachedDatabase, [this._alias]);
+  $DeckCardsTable(this.attachedDatabase, [this._alias]);
   final VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int?> id = GeneratedColumn<int?>(
@@ -486,19 +486,19 @@ class $DeckFaktsTable extends DeckFakts
   late final GeneratedColumn<String?> deck = GeneratedColumn<String?>(
       'deck', aliasedName, false,
       type: const StringType(), requiredDuringInsert: true);
-  final VerificationMeta _faktMeta = const VerificationMeta('fakt');
+  final VerificationMeta _cardMeta = const VerificationMeta('card');
   @override
-  late final GeneratedColumn<String?> fakt = GeneratedColumn<String?>(
-      'fakt', aliasedName, false,
+  late final GeneratedColumn<String?> card = GeneratedColumn<String?>(
+      'card', aliasedName, false,
       type: const StringType(), requiredDuringInsert: true);
   @override
-  List<GeneratedColumn> get $columns => [id, key, deck, fakt];
+  List<GeneratedColumn> get $columns => [id, key, deck, card];
   @override
-  String get aliasedName => _alias ?? 'deck_fakts';
+  String get aliasedName => _alias ?? 'deck_cards';
   @override
-  String get actualTableName => 'deck_fakts';
+  String get actualTableName => 'deck_cards';
   @override
-  VerificationContext validateIntegrity(Insertable<DeckFakt> instance,
+  VerificationContext validateIntegrity(Insertable<DeckCard> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -517,11 +517,11 @@ class $DeckFaktsTable extends DeckFakts
     } else if (isInserting) {
       context.missing(_deckMeta);
     }
-    if (data.containsKey('fakt')) {
+    if (data.containsKey('card')) {
       context.handle(
-          _faktMeta, fakt.isAcceptableOrUnknown(data['fakt']!, _faktMeta));
+          _cardMeta, card.isAcceptableOrUnknown(data['card']!, _cardMeta));
     } else if (isInserting) {
-      context.missing(_faktMeta);
+      context.missing(_cardMeta);
     }
     return context;
   }
@@ -529,14 +529,14 @@ class $DeckFaktsTable extends DeckFakts
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  DeckFakt map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return DeckFakt.fromData(data,
+  DeckCard map(Map<String, dynamic> data, {String? tablePrefix}) {
+    return DeckCard.fromData(data,
         prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 
   @override
-  $DeckFaktsTable createAlias(String alias) {
-    return $DeckFaktsTable(attachedDatabase, alias);
+  $DeckCardsTable createAlias(String alias) {
+    return $DeckCardsTable(attachedDatabase, alias);
   }
 }
 
@@ -1114,7 +1114,7 @@ class Img extends DataClass implements Insertable<Img> {
   final int id;
   final String key;
   final String path;
-  final String pathType;
+  final int pathType;
   Img(
       {required this.id,
       required this.key,
@@ -1129,7 +1129,7 @@ class Img extends DataClass implements Insertable<Img> {
           .mapFromDatabaseResponse(data['${effectivePrefix}key'])!,
       path: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}path'])!,
-      pathType: const StringType()
+      pathType: const IntType()
           .mapFromDatabaseResponse(data['${effectivePrefix}path_type'])!,
     );
   }
@@ -1139,7 +1139,7 @@ class Img extends DataClass implements Insertable<Img> {
     map['id'] = Variable<int>(id);
     map['key'] = Variable<String>(key);
     map['path'] = Variable<String>(path);
-    map['path_type'] = Variable<String>(pathType);
+    map['path_type'] = Variable<int>(pathType);
     return map;
   }
 
@@ -1159,7 +1159,7 @@ class Img extends DataClass implements Insertable<Img> {
       id: serializer.fromJson<int>(json['id']),
       key: serializer.fromJson<String>(json['key']),
       path: serializer.fromJson<String>(json['path']),
-      pathType: serializer.fromJson<String>(json['pathType']),
+      pathType: serializer.fromJson<int>(json['pathType']),
     );
   }
   @override
@@ -1169,11 +1169,11 @@ class Img extends DataClass implements Insertable<Img> {
       'id': serializer.toJson<int>(id),
       'key': serializer.toJson<String>(key),
       'path': serializer.toJson<String>(path),
-      'pathType': serializer.toJson<String>(pathType),
+      'pathType': serializer.toJson<int>(pathType),
     };
   }
 
-  Img copyWith({int? id, String? key, String? path, String? pathType}) => Img(
+  Img copyWith({int? id, String? key, String? path, int? pathType}) => Img(
         id: id ?? this.id,
         key: key ?? this.key,
         path: path ?? this.path,
@@ -1206,7 +1206,7 @@ class ImgsCompanion extends UpdateCompanion<Img> {
   final Value<int> id;
   final Value<String> key;
   final Value<String> path;
-  final Value<String> pathType;
+  final Value<int> pathType;
   const ImgsCompanion({
     this.id = const Value.absent(),
     this.key = const Value.absent(),
@@ -1217,7 +1217,7 @@ class ImgsCompanion extends UpdateCompanion<Img> {
     this.id = const Value.absent(),
     required String key,
     required String path,
-    required String pathType,
+    required int pathType,
   })  : key = Value(key),
         path = Value(path),
         pathType = Value(pathType);
@@ -1225,7 +1225,7 @@ class ImgsCompanion extends UpdateCompanion<Img> {
     Expression<int>? id,
     Expression<String>? key,
     Expression<String>? path,
-    Expression<String>? pathType,
+    Expression<int>? pathType,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -1239,7 +1239,7 @@ class ImgsCompanion extends UpdateCompanion<Img> {
       {Value<int>? id,
       Value<String>? key,
       Value<String>? path,
-      Value<String>? pathType}) {
+      Value<int>? pathType}) {
     return ImgsCompanion(
       id: id ?? this.id,
       key: key ?? this.key,
@@ -1261,7 +1261,7 @@ class ImgsCompanion extends UpdateCompanion<Img> {
       map['path'] = Variable<String>(path.value);
     }
     if (pathType.present) {
-      map['path_type'] = Variable<String>(pathType.value);
+      map['path_type'] = Variable<int>(pathType.value);
     }
     return map;
   }
@@ -1302,9 +1302,9 @@ class $ImgsTable extends Imgs with TableInfo<$ImgsTable, Img> {
       type: const StringType(), requiredDuringInsert: true);
   final VerificationMeta _pathTypeMeta = const VerificationMeta('pathType');
   @override
-  late final GeneratedColumn<String?> pathType = GeneratedColumn<String?>(
+  late final GeneratedColumn<int?> pathType = GeneratedColumn<int?>(
       'path_type', aliasedName, false,
-      type: const StringType(), requiredDuringInsert: true);
+      type: const IntType(), requiredDuringInsert: true);
   @override
   List<GeneratedColumn> get $columns => [id, key, path, pathType];
   @override
@@ -1358,7 +1358,7 @@ abstract class _$DictionaryDatabase extends GeneratedDatabase {
   _$DictionaryDatabase(QueryExecutor e)
       : super(SqlTypeSystem.defaultInstance, e);
   late final $DecksTable decks = $DecksTable(this);
-  late final $DeckFaktsTable deckFakts = $DeckFaktsTable(this);
+  late final $DeckCardsTable deckCards = $DeckCardsTable(this);
   late final $FaktsTable fakts = $FaktsTable(this);
   late final $CardsTable cards = $CardsTable(this);
   late final $ImgsTable imgs = $ImgsTable(this);
@@ -1366,11 +1366,11 @@ abstract class _$DictionaryDatabase extends GeneratedDatabase {
   late final CardsDao cardsDao = CardsDao(this as DictionaryDatabase);
   late final FaktsDao faktsDao = FaktsDao(this as DictionaryDatabase);
   late final ImgsDao imgsDao = ImgsDao(this as DictionaryDatabase);
-  late final DeckFaktsDao deckFaktsDao =
-      DeckFaktsDao(this as DictionaryDatabase);
+  late final DeckCardsDao deckCardsDao =
+      DeckCardsDao(this as DictionaryDatabase);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities =>
-      [decks, deckFakts, fakts, cards, imgs];
+      [decks, deckCards, fakts, cards, imgs];
 }

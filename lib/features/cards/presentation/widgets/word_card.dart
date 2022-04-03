@@ -42,7 +42,7 @@ class _WordCardState extends State<WordCard> {
                       ? Column(
                           children: [
                             _buildQuestion(data.question, context),
-                            _buildContext(data.context),
+                            _buildContext(data.transcription),
                             _answerIsVisible
                                 ? SizedBox(
                                     width: 200,

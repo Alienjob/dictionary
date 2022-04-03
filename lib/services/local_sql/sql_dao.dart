@@ -2,8 +2,6 @@ import 'package:drift/drift.dart';
 import './sql_data_model.dart';
 import './sql_data_base.dart';
 
-import 'package:dictionary/core/domain/entities/dictionary_image.dart';
-
 part 'sql_dao.g.dart';
 
 @DriftAccessor(tables: [Decks])
@@ -11,7 +9,7 @@ class DecksDao extends DatabaseAccessor<DictionaryDatabase>
     with _$DecksDaoMixin {
   DecksDao(DictionaryDatabase db) : super(db);
 
-  Stream<List<Deck>>? allDecks() {
+  Stream<List<Deck>> allDecks() {
     return select(decks).watch();
   }
 
@@ -33,8 +31,16 @@ class CardsDao extends DatabaseAccessor<DictionaryDatabase>
     with _$CardsDaoMixin {
   CardsDao(DictionaryDatabase db) : super(db);
 
-  Stream<List<Card>>? allCards() {
+  Stream<List<Card>> allCards() {
     return select(cards).watch();
+  }
+
+  Future<Card> getCard(key) async {
+    return await (select(cards)
+          ..where(
+            (tbl) => tbl.key.equals(key),
+          ))
+        .getSingle();
   }
 
   Future<int> addCard(CardsCompanion entry) {
@@ -55,8 +61,12 @@ class FaktsDao extends DatabaseAccessor<DictionaryDatabase>
     with _$FaktsDaoMixin {
   FaktsDao(DictionaryDatabase db) : super(db);
 
-  Stream<List<Fakt>>? allFakts() {
+  Stream<List<Fakt>> allFakts() {
     return select(fakts).watch();
+  }
+
+  Future<Fakt> getFakt(String key) async {
+    return await (select(fakts)..where((t) => t.key.equals(key))).getSingle();
   }
 
   Future<int> addFakt(FaktsCompanion entry) {
@@ -76,8 +86,12 @@ class FaktsDao extends DatabaseAccessor<DictionaryDatabase>
 class ImgsDao extends DatabaseAccessor<DictionaryDatabase> with _$ImgsDaoMixin {
   ImgsDao(DictionaryDatabase db) : super(db);
 
-  Stream<List<Img>>? allImgs() {
+  Stream<List<Img>> allImgs() {
     return select(imgs).watch();
+  }
+
+  Future<Img> getImg(String key) {
+    return (select(imgs)..where((tbl) => tbl.key.equals(key))).getSingle();
   }
 
   Future<int> addImg(ImgsCompanion entry) {
@@ -93,24 +107,28 @@ class ImgsDao extends DatabaseAccessor<DictionaryDatabase> with _$ImgsDaoMixin {
   }
 }
 
-@DriftAccessor(tables: [DeckFakts])
-class DeckFaktsDao extends DatabaseAccessor<DictionaryDatabase>
-    with _$DeckFaktsDaoMixin {
-  DeckFaktsDao(DictionaryDatabase db) : super(db);
+@DriftAccessor(tables: [DeckCards])
+class DeckCardsDao extends DatabaseAccessor<DictionaryDatabase>
+    with _$DeckCardsDaoMixin {
+  DeckCardsDao(DictionaryDatabase db) : super(db);
 
-  Stream<List<DeckFakt>>? allDeckFakts() {
-    return select(deckFakts).watch();
+  Stream<List<DeckCard>> allDeckCards() {
+    return select(deckCards).watch();
   }
 
-  Future<int> addDeckFakt(DeckFaktsCompanion entry) {
-    return into(deckFakts).insert(entry);
+  Stream<List<DeckCard>> selectedDeckCards(deckKey) {
+    return select(deckCards).watch();
   }
 
-  Future<void> updateDeckFakt(DeckFaktsCompanion entry) async {
-    return update(deckFakts).where((t) => t.key.equals(entry.key.value));
+  Future<int> addDeckCard(DeckCardsCompanion entry) {
+    return into(deckCards).insert(entry);
   }
 
-  Future<void> deleteDeckFakt(DeckFaktsCompanion entry) async {
-    return delete(deckFakts).where((t) => t.key.equals(entry.key.value));
+  Future<void> updateDeckCard(DeckCardsCompanion entry) async {
+    return update(deckCards).where((t) => t.key.equals(entry.key.value));
+  }
+
+  Future<void> deleteDeckCard(DeckCardsCompanion entry) async {
+    return delete(deckCards).where((t) => t.key.equals(entry.key.value));
   }
 }

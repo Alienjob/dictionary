@@ -23,7 +23,6 @@ class ModelWordCard extends Equatable {
 
   String get key => _data.key;
   String get question => _data.question;
-  String get context => _data.context;
   String get answer => _data.answer;
   String get img => _data.img;
   String get transcription => _data.transcription;

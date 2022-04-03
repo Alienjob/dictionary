@@ -8,8 +8,8 @@ import './sql_dao.dart';
 part 'sql_data_base.g.dart';
 
 @DriftDatabase(
-    tables: [Decks, DeckFakts, Fakts, Cards, Imgs],
-    daos: [DecksDao, CardsDao, FaktsDao, ImgsDao, DeckFaktsDao])
+    tables: [Decks, DeckCards, Fakts, Cards, Imgs],
+    daos: [DecksDao, CardsDao, FaktsDao, ImgsDao, DeckCardsDao])
 class DictionaryDatabase extends _$DictionaryDatabase {
   DictionaryDatabase(QueryExecutor e, this.embeddedDataService) : super(e);
 

@@ -18,6 +18,6 @@ mixin _$FaktsDaoMixin on DatabaseAccessor<DictionaryDatabase> {
 mixin _$ImgsDaoMixin on DatabaseAccessor<DictionaryDatabase> {
   $ImgsTable get imgs => attachedDatabase.imgs;
 }
-mixin _$DeckFaktsDaoMixin on DatabaseAccessor<DictionaryDatabase> {
-  $DeckFaktsTable get deckFakts => attachedDatabase.deckFakts;
+mixin _$DeckCardsDaoMixin on DatabaseAccessor<DictionaryDatabase> {
+  $DeckCardsTable get deckCards => attachedDatabase.deckCards;
 }

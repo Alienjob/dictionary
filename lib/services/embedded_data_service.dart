@@ -125,10 +125,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "Hello!",
-      context: "It is your first start app",
+      transcription: "It is your first start app",
       answer: "Смахните карту",
       img: "lib/assets/images/hello/hello.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -136,10 +135,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "Know",
-      context: "If you know answer for the question, swipe right",
+      transcription: "If you know answer for the question, swipe right",
       answer: "Если вы знали ответ - смахните вправо",
       img: "lib/assets/images/hello/right.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -147,10 +145,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "Don't know",
-      context: "If you don't know or forget - see answer and swipe left",
+      transcription: "If you don't know or forget - see answer and swipe left",
       answer: "Если вы не знали ответ или забыли - смахните влево",
       img: "lib/assets/images/hello/left.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -160,10 +157,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "airplane",
-      context: "ˈeəpleɪn",
+      transcription: "ˈeəpleɪn",
       answer: "аэроплан",
       img: "lib/assets/images/alphabet_words/0.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -171,10 +167,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "apple",
-      context: "ˈæp(ə)l",
+      transcription: "ˈæp(ə)l",
       answer: "яблоко",
       img: "lib/assets/images/alphabet_words/1.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -182,10 +177,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "bee",
-      context: "biː",
+      transcription: "biː",
       answer: "пчела",
       img: "lib/assets/images/alphabet_words/2.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -193,10 +187,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "bike",
-      context: "baɪk",
+      transcription: "baɪk",
       answer: "велосипед",
       img: "lib/assets/images/alphabet_words/3.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -204,10 +197,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "cat",
-      context: "kæt",
+      transcription: "kæt",
       answer: "кот",
       img: "lib/assets/images/alphabet_words/4.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -215,10 +207,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "dog",
-      context: "dɒɡ",
+      transcription: "dɒɡ",
       answer: "собака",
       img: "lib/assets/images/alphabet_words/5.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -226,10 +217,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "ears",
-      context: "ɪəz",
+      transcription: "ɪəz",
       answer: "уши",
       img: "lib/assets/images/alphabet_words/6.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -237,10 +227,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "egg",
-      context: "eɡ",
+      transcription: "eɡ",
       answer: "яйцо",
       img: "lib/assets/images/alphabet_words/7.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -248,10 +237,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "fork",
-      context: "fɔːk",
+      transcription: "fɔːk",
       answer: "вилка",
       img: "lib/assets/images/alphabet_words/8.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -259,10 +247,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "green",
-      context: "ɡriːn",
+      transcription: "ɡriːn",
       answer: "зеленый",
       img: "lib/assets/images/alphabet_words/9.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -270,10 +257,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "giraffe",
-      context: "dʒɪˈrɑːf",
+      transcription: "dʒɪˈrɑːf",
       answer: "жираф",
       img: "lib/assets/images/alphabet_words/10.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -281,10 +267,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "hair",
-      context: "heə",
+      transcription: "heə",
       answer: "волосы",
       img: "lib/assets/images/alphabet_words/11.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -292,10 +277,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "ice cream",
-      context: "aɪs kriːm",
+      transcription: "aɪs kriːm",
       answer: "мороженное",
       img: "lib/assets/images/alphabet_words/12.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -303,10 +287,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "igloo",
-      context: "ˈɪɡluː",
+      transcription: "ˈɪɡluː",
       answer: "иглу",
       img: "lib/assets/images/alphabet_words/13.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -314,10 +297,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "juice",
-      context: "...",
+      transcription: "...",
       answer: "сок",
       img: "lib/assets/images/alphabet_words/14.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -325,10 +307,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "key",
-      context: "dʒuːs",
+      transcription: "dʒuːs",
       answer: "ключ",
       img: "lib/assets/images/alphabet_words/15.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -336,10 +317,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "light",
-      context: "laɪt",
+      transcription: "laɪt",
       answer: "свет",
       img: "lib/assets/images/alphabet_words/16.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -347,10 +327,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "monkey",
-      context: "ˈmʌŋkɪ",
+      transcription: "ˈmʌŋkɪ",
       answer: "обезьяна",
       img: "lib/assets/images/alphabet_words/17.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -358,10 +337,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "mom",
-      context: "mɒm",
+      transcription: "mɒm",
       answer: "мама",
       img: "lib/assets/images/alphabet_words/18.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -369,10 +347,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "noodles",
-      context: "ˈnuːdəlz",
+      transcription: "ˈnuːdəlz",
       answer: "лапша",
       img: "lib/assets/images/alphabet_words/19.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -380,10 +357,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "orange",
-      context: "ˈɒrɪn(d)ʒ",
+      transcription: "ˈɒrɪn(d)ʒ",
       answer: "апельсин",
       img: "lib/assets/images/alphabet_words/20.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -391,10 +367,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "octopus",
-      context: "ˈɒktəpəs",
+      transcription: "ˈɒktəpəs",
       answer: "осьминог",
       img: "lib/assets/images/alphabet_words/22.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -402,10 +377,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "peach",
-      context: "piːtʃ",
+      transcription: "piːtʃ",
       answer: "персик",
       img: "lib/assets/images/alphabet_words/21.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -413,10 +387,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "rain",
-      context: "reɪn",
+      transcription: "reɪn",
       answer: "дождь",
       img: "lib/assets/images/alphabet_words/23.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -424,10 +397,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "question",
-      context: "ˈkwestʃ(ə)n",
+      transcription: "ˈkwestʃ(ə)n",
       answer: "вопрос",
       img: "lib/assets/images/alphabet_words/24.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -435,10 +407,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "sun",
-      context: "sʌn",
+      transcription: "sʌn",
       answer: "солнце",
       img: "lib/assets/images/alphabet_words/25.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -446,10 +417,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "tea",
-      context: "tiː",
+      transcription: "tiː",
       answer: "чай",
       img: "lib/assets/images/alphabet_words/27.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -457,10 +427,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "umbrella",
-      context: "ʌmˈbrelə",
+      transcription: "ʌmˈbrelə",
       answer: "зонт",
       img: "lib/assets/images/alphabet_words/26.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -468,10 +437,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "uniforms",
-      context: "ˈjuːnɪfɔːmz",
+      transcription: "ˈjuːnɪfɔːmz",
       answer: "униформа",
       img: "lib/assets/images/alphabet_words/28.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -479,10 +447,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "vacuum",
-      context: "ˈvækjʊəm",
+      transcription: "ˈvækjʊəm",
       answer: "пылесос",
       img: "lib/assets/images/alphabet_words/29.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -490,10 +457,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "whistle",
-      context: "ˈwɪs(ə)l",
+      transcription: "ˈwɪs(ə)l",
       answer: "свисток",
       img: "lib/assets/images/alphabet_words/31.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -501,10 +467,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "box",
-      context: "bɒks",
+      transcription: "bɒks",
       answer: "коробка",
       img: "lib/assets/images/alphabet_words/30.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -512,10 +477,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "yarn",
-      context: "jɑːn",
+      transcription: "jɑːn",
       answer: "пряжа",
       img: "lib/assets/images/alphabet_words/33.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -523,10 +487,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "sky",
-      context: "skaɪ",
+      transcription: "skaɪ",
       answer: "небо",
       img: "lib/assets/images/alphabet_words/32.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -534,10 +497,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "zipper",
-      context: "ˈzɪpə",
+      transcription: "ˈzɪpə",
       answer: "молния",
       img: "lib/assets/images/alphabet_words/35.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 
@@ -545,10 +507,9 @@ class EmbeddedDataServiceImpl implements EmbeddedDataService {
     data[key] = CardData.fromData(
       key: key,
       question: "zebra",
-      context: "ˈzebrə",
+      transcription: "ˈzebrə",
       answer: "зебра",
       img: "lib/assets/images/alphabet_words/34.png",
-      transcription: "",
       transcriptionAnswer: "",
     );
 

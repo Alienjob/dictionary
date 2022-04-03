@@ -21,7 +21,6 @@ class _$CardDataTearOff {
   _Data fromData(
       {required String key,
       required String question,
-      required String context,
       required String answer,
       required String img,
       required String transcription,
@@ -29,7 +28,6 @@ class _$CardDataTearOff {
     return _Data(
       key: key,
       question: question,
-      context: context,
       answer: answer,
       img: img,
       transcription: transcription,
@@ -49,30 +47,24 @@ const $CardData = _$CardDataTearOff();
 mixin _$CardData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String key,
-            String question,
-            String context,
-            String answer,
-            String img,
-            String transcription,
-            String transcriptionAnswer)
+    required TResult Function(String key, String question, String answer,
+            String img, String transcription, String transcriptionAnswer)
         fromData,
     required TResult Function() empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String key, String question, String context, String answer,
-            String img, String transcription, String transcriptionAnswer)?
+    TResult Function(String key, String question, String answer, String img,
+            String transcription, String transcriptionAnswer)?
         fromData,
     TResult Function()? empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String key, String question, String context, String answer,
-            String img, String transcription, String transcriptionAnswer)?
+    TResult Function(String key, String question, String answer, String img,
+            String transcription, String transcriptionAnswer)?
         fromData,
     TResult Function()? empty,
     required TResult orElse(),
@@ -121,7 +113,6 @@ abstract class _$DataCopyWith<$Res> {
   $Res call(
       {String key,
       String question,
-      String context,
       String answer,
       String img,
       String transcription,
@@ -141,7 +132,6 @@ class __$DataCopyWithImpl<$Res> extends _$CardDataCopyWithImpl<$Res>
   $Res call({
     Object? key = freezed,
     Object? question = freezed,
-    Object? context = freezed,
     Object? answer = freezed,
     Object? img = freezed,
     Object? transcription = freezed,
@@ -155,10 +145,6 @@ class __$DataCopyWithImpl<$Res> extends _$CardDataCopyWithImpl<$Res>
       question: question == freezed
           ? _value.question
           : question // ignore: cast_nullable_to_non_nullable
-              as String,
-      context: context == freezed
-          ? _value.context
-          : context // ignore: cast_nullable_to_non_nullable
               as String,
       answer: answer == freezed
           ? _value.answer
@@ -186,7 +172,6 @@ class _$_Data extends _Data with DiagnosticableTreeMixin {
   const _$_Data(
       {required this.key,
       required this.question,
-      required this.context,
       required this.answer,
       required this.img,
       required this.transcription,
@@ -198,8 +183,6 @@ class _$_Data extends _Data with DiagnosticableTreeMixin {
   @override
   final String question;
   @override
-  final String context;
-  @override
   final String answer;
   @override
   final String img;
@@ -210,7 +193,7 @@ class _$_Data extends _Data with DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CardData.fromData(key: $key, question: $question, context: $context, answer: $answer, img: $img, transcription: $transcription, transcriptionAnswer: $transcriptionAnswer)';
+    return 'CardData.fromData(key: $key, question: $question, answer: $answer, img: $img, transcription: $transcription, transcriptionAnswer: $transcriptionAnswer)';
   }
 
   @override
@@ -220,7 +203,6 @@ class _$_Data extends _Data with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('type', 'CardData.fromData'))
       ..add(DiagnosticsProperty('key', key))
       ..add(DiagnosticsProperty('question', question))
-      ..add(DiagnosticsProperty('context', context))
       ..add(DiagnosticsProperty('answer', answer))
       ..add(DiagnosticsProperty('img', img))
       ..add(DiagnosticsProperty('transcription', transcription))
@@ -234,7 +216,6 @@ class _$_Data extends _Data with DiagnosticableTreeMixin {
             other is _Data &&
             const DeepCollectionEquality().equals(other.key, key) &&
             const DeepCollectionEquality().equals(other.question, question) &&
-            const DeepCollectionEquality().equals(other.context, context) &&
             const DeepCollectionEquality().equals(other.answer, answer) &&
             const DeepCollectionEquality().equals(other.img, img) &&
             const DeepCollectionEquality()
@@ -248,7 +229,6 @@ class _$_Data extends _Data with DiagnosticableTreeMixin {
       runtimeType,
       const DeepCollectionEquality().hash(key),
       const DeepCollectionEquality().hash(question),
-      const DeepCollectionEquality().hash(context),
       const DeepCollectionEquality().hash(answer),
       const DeepCollectionEquality().hash(img),
       const DeepCollectionEquality().hash(transcription),
@@ -262,45 +242,39 @@ class _$_Data extends _Data with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String key,
-            String question,
-            String context,
-            String answer,
-            String img,
-            String transcription,
-            String transcriptionAnswer)
+    required TResult Function(String key, String question, String answer,
+            String img, String transcription, String transcriptionAnswer)
         fromData,
     required TResult Function() empty,
   }) {
-    return fromData(key, question, context, answer, img, transcription,
-        transcriptionAnswer);
+    return fromData(
+        key, question, answer, img, transcription, transcriptionAnswer);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String key, String question, String context, String answer,
-            String img, String transcription, String transcriptionAnswer)?
+    TResult Function(String key, String question, String answer, String img,
+            String transcription, String transcriptionAnswer)?
         fromData,
     TResult Function()? empty,
   }) {
-    return fromData?.call(key, question, context, answer, img, transcription,
-        transcriptionAnswer);
+    return fromData?.call(
+        key, question, answer, img, transcription, transcriptionAnswer);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String key, String question, String context, String answer,
-            String img, String transcription, String transcriptionAnswer)?
+    TResult Function(String key, String question, String answer, String img,
+            String transcription, String transcriptionAnswer)?
         fromData,
     TResult Function()? empty,
     required TResult orElse(),
   }) {
     if (fromData != null) {
-      return fromData(key, question, context, answer, img, transcription,
-          transcriptionAnswer);
+      return fromData(
+          key, question, answer, img, transcription, transcriptionAnswer);
     }
     return orElse();
   }
@@ -341,7 +315,6 @@ abstract class _Data extends CardData {
   const factory _Data(
       {required String key,
       required String question,
-      required String context,
       required String answer,
       required String img,
       required String transcription,
@@ -350,7 +323,6 @@ abstract class _Data extends CardData {
 
   String get key;
   String get question;
-  String get context;
   String get answer;
   String get img;
   String get transcription;
@@ -403,14 +375,8 @@ class _$_Empty extends _Empty with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String key,
-            String question,
-            String context,
-            String answer,
-            String img,
-            String transcription,
-            String transcriptionAnswer)
+    required TResult Function(String key, String question, String answer,
+            String img, String transcription, String transcriptionAnswer)
         fromData,
     required TResult Function() empty,
   }) {
@@ -420,8 +386,8 @@ class _$_Empty extends _Empty with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String key, String question, String context, String answer,
-            String img, String transcription, String transcriptionAnswer)?
+    TResult Function(String key, String question, String answer, String img,
+            String transcription, String transcriptionAnswer)?
         fromData,
     TResult Function()? empty,
   }) {
@@ -431,8 +397,8 @@ class _$_Empty extends _Empty with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String key, String question, String context, String answer,
-            String img, String transcription, String transcriptionAnswer)?
+    TResult Function(String key, String question, String answer, String img,
+            String transcription, String transcriptionAnswer)?
         fromData,
     TResult Function()? empty,
     required TResult orElse(),

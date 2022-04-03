@@ -9,7 +9,13 @@ enum DictionaryImagePathType { url, embedded }
 class DictionaryImage with _$DictionaryImage {
   DictionaryImage._();
 
+  static DictionaryImagePathType typeFromString(name) {
+    return DictionaryImagePathType.embedded;
+  }
+
   String get path => when((path, pathType) => path, empty: () => '');
+  DictionaryImagePathType get pathType => when((path, pathType) => pathType,
+      empty: () => DictionaryImagePathType.embedded);
 
   factory DictionaryImage(
       {required String path,
