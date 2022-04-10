@@ -22,6 +22,7 @@ abstract class SQLDataAPI {
       {required List<String> dictionaryKeys});
   Future<UserDictionaryProgress> dictionaryProgress(
       {required String dictionaryKey});
+  Future<void> makeTasks();
 }
 
 class SQLDataAPIImpl implements SQLDataAPI {
@@ -163,6 +164,10 @@ class SQLDataAPIImpl implements SQLDataAPI {
       remember: remember,
       time: _currentTimeInSeconds(),
     ));
+    var _existedTask = await db.tasksDao.getTaskByCard(cardKey);
+    if (_existedTask is Task) {
+      db.tasksDao.doneTask(_existedTask.key);
+    }
   }
 
   @override
@@ -244,5 +249,30 @@ class SQLDataAPIImpl implements SQLDataAPI {
   DictionaryImage _Img_to_DictionaryImage(Img img) {
     return DictionaryImage(
         path: img.path, pathType: DictionaryImagePathType.values[img.pathType]);
+  }
+
+  @override
+  Future<void> makeTasks() async {
+    var _decks = await db.decksDao.allDecks().last;
+
+    for (var _deck in _decks) {
+      var deckKey = _deck.key;
+
+      var _cards = await db.deckCardsDao.selectedDeckCards(deckKey).last;
+      for (var card in _cards) {
+        var _answerExist = await db.answersDao.answerExist(cardKey: card.key);
+        var _existedTask = await db.tasksDao.getTaskByCard(card.key);
+        if (_existedTask == null) {
+          db.tasksDao.addTask(TasksCompanion.insert(
+              key: uuid.v4(),
+              type: _answerExist ? 1 : 0,
+              deck: deckKey,
+              card: card.key,
+              createTime: _currentTimeInSeconds(),
+              done: 0,
+              doneTime: 0));
+        }
+      }
+    }
   }
 }

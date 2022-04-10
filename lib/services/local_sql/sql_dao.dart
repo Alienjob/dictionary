@@ -148,6 +148,13 @@ class AnswersDao extends DatabaseAccessor<DictionaryDatabase>
         .get();
   }
 
+  Future<bool> answerExist({required String cardKey}) async {
+    var existingAnswer = await (select(answers)
+          ..where((tbl) => tbl.card.equals(cardKey)))
+        .getSingleOrNull();
+    return existingAnswer != null;
+  }
+
   Future<int> addAnswer(AnswersCompanion entry) {
     return into(answers).insert(entry);
   }
@@ -160,6 +167,12 @@ class TasksDao extends DatabaseAccessor<DictionaryDatabase>
 
   Future<Task> getTask(String key) {
     return (select(tasks)..where((tbl) => tbl.key.equals(key))).getSingle();
+  }
+
+  Future<Task?> getTaskByCard(String cardKey) {
+    return (select(tasks)
+          ..where((tbl) => tbl.card.equals(cardKey) & tbl.done.equals(0)))
+        .getSingleOrNull();
   }
 
   Future<List<Task>> getDeckNew(String deck) {
@@ -178,5 +191,12 @@ class TasksDao extends DatabaseAccessor<DictionaryDatabase>
 
   Future<int> addTask(TasksCompanion entry) {
     return into(tasks).insert(entry);
+  }
+
+  Future<void> doneTask(String key) async {
+    (update(tasks)..where((tbl) => tbl.key.equals(key)))
+        .write(const TasksCompanion(
+      done: Value(1),
+    ));
   }
 }

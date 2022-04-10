@@ -9,6 +9,7 @@ abstract class DictionaryLocalDataSource {
   Future<UserDictionaryList> getSplashUserDictionaryList();
   Future<UserDictionaryList> getUserDictionaryList();
   Future<void> cacheUserDictionaryList(List<Dictionary> list);
+  Future<void> makeTasks();
 }
 
 // ignore: constant_identifier_names
@@ -98,5 +99,10 @@ class DictionaryLocalDataSourceImpl implements DictionaryLocalDataSource {
     var newUserDictionary =
         UserDictionary(dictionary: dictionary, progress: progress);
     return newUserDictionary;
+  }
+
+  @override
+  Future<void> makeTasks() async {
+    await sqlDataAPI.makeTasks();
   }
 }

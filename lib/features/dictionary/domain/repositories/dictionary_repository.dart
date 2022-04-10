@@ -19,4 +19,7 @@ abstract class DictionaryRepository {
   /// Throws a [LocalFailure] for local error codes.
   /// Throws a [ServerFailure] for remote error codes.
   Future<Either<Failure, UserDictionaryList>> getRemoteDictionaryList();
+
+  /// Update tasks
+  Future<void> makeTasks();
 }

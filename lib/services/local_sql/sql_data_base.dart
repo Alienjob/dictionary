@@ -42,6 +42,7 @@ class DictionaryDatabase extends _$DictionaryDatabase {
   MigrationStrategy get migration {
     return MigrationStrategy(
       onCreate: (migrator) async {
+        await migrator.createAll();
         await _populateDataFromEmbedded();
       },
     );

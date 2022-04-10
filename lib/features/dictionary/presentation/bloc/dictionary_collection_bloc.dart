@@ -56,6 +56,12 @@ class DictionaryCollectionBLoC
         (l) => emit(const _ErrorState()),
         (r) => emit(_ReadyState(data: r)),
       );
+      await _repository.makeTasks();
+      list = await _repository.getCachedDictionaryList();
+      list.fold(
+        (l) => emit(const _ErrorState()),
+        (r) => emit(_ReadyState(data: r)),
+      );
     } on Object catch (error, _) {
       emit(const _ErrorState());
       rethrow;

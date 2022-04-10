@@ -55,4 +55,9 @@ class DictionaryRepositoryImpl implements DictionaryRepository {
       return const Left(ServerFailure());
     }
   }
+
+  @override
+  Future<void> makeTasks() async {
+    await localDataSource.makeTasks();
+  }
 }

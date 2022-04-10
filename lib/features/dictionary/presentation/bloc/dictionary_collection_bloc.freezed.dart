@@ -21,6 +21,10 @@ class _$DictionaryCollectionEventTearOff {
   _RequestEvent request() {
     return const _RequestEvent();
   }
+
+  _RequestTasksEvent requestTasks() {
+    return const _RequestTasksEvent();
+  }
 }
 
 /// @nodoc
@@ -31,32 +35,38 @@ mixin _$DictionaryCollectionEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() request,
+    required TResult Function() requestTasks,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? request,
+    TResult Function()? requestTasks,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? request,
+    TResult Function()? requestTasks,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_RequestEvent value) request,
+    required TResult Function(_RequestTasksEvent value) requestTasks,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_RequestEvent value)? request,
+    TResult Function(_RequestTasksEvent value)? requestTasks,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_RequestEvent value)? request,
+    TResult Function(_RequestTasksEvent value)? requestTasks,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -121,6 +131,7 @@ class _$_RequestEvent extends _RequestEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() request,
+    required TResult Function() requestTasks,
   }) {
     return request();
   }
@@ -129,6 +140,7 @@ class _$_RequestEvent extends _RequestEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? request,
+    TResult Function()? requestTasks,
   }) {
     return request?.call();
   }
@@ -137,6 +149,7 @@ class _$_RequestEvent extends _RequestEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? request,
+    TResult Function()? requestTasks,
     required TResult orElse(),
   }) {
     if (request != null) {
@@ -149,6 +162,7 @@ class _$_RequestEvent extends _RequestEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_RequestEvent value) request,
+    required TResult Function(_RequestTasksEvent value) requestTasks,
   }) {
     return request(this);
   }
@@ -157,6 +171,7 @@ class _$_RequestEvent extends _RequestEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_RequestEvent value)? request,
+    TResult Function(_RequestTasksEvent value)? requestTasks,
   }) {
     return request?.call(this);
   }
@@ -165,6 +180,7 @@ class _$_RequestEvent extends _RequestEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_RequestEvent value)? request,
+    TResult Function(_RequestTasksEvent value)? requestTasks,
     required TResult orElse(),
   }) {
     if (request != null) {
@@ -177,6 +193,112 @@ class _$_RequestEvent extends _RequestEvent {
 abstract class _RequestEvent extends DictionaryCollectionEvent {
   const factory _RequestEvent() = _$_RequestEvent;
   const _RequestEvent._() : super._();
+}
+
+/// @nodoc
+abstract class _$RequestTasksEventCopyWith<$Res> {
+  factory _$RequestTasksEventCopyWith(
+          _RequestTasksEvent value, $Res Function(_RequestTasksEvent) then) =
+      __$RequestTasksEventCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$RequestTasksEventCopyWithImpl<$Res>
+    extends _$DictionaryCollectionEventCopyWithImpl<$Res>
+    implements _$RequestTasksEventCopyWith<$Res> {
+  __$RequestTasksEventCopyWithImpl(
+      _RequestTasksEvent _value, $Res Function(_RequestTasksEvent) _then)
+      : super(_value, (v) => _then(v as _RequestTasksEvent));
+
+  @override
+  _RequestTasksEvent get _value => super._value as _RequestTasksEvent;
+}
+
+/// @nodoc
+
+class _$_RequestTasksEvent extends _RequestTasksEvent {
+  const _$_RequestTasksEvent() : super._();
+
+  @override
+  String toString() {
+    return 'DictionaryCollectionEvent.requestTasks()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _RequestTasksEvent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() request,
+    required TResult Function() requestTasks,
+  }) {
+    return requestTasks();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? request,
+    TResult Function()? requestTasks,
+  }) {
+    return requestTasks?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? request,
+    TResult Function()? requestTasks,
+    required TResult orElse(),
+  }) {
+    if (requestTasks != null) {
+      return requestTasks();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_RequestEvent value) request,
+    required TResult Function(_RequestTasksEvent value) requestTasks,
+  }) {
+    return requestTasks(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_RequestEvent value)? request,
+    TResult Function(_RequestTasksEvent value)? requestTasks,
+  }) {
+    return requestTasks?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_RequestEvent value)? request,
+    TResult Function(_RequestTasksEvent value)? requestTasks,
+    required TResult orElse(),
+  }) {
+    if (requestTasks != null) {
+      return requestTasks(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RequestTasksEvent extends DictionaryCollectionEvent {
+  const factory _RequestTasksEvent() = _$_RequestTasksEvent;
+  const _RequestTasksEvent._() : super._();
 }
 
 /// @nodoc
