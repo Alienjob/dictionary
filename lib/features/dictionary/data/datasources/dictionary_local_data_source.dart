@@ -2,14 +2,13 @@ import 'dart:convert';
 
 import 'package:dictionary/features/dictionary/domain/entities/dictionary.dart';
 import 'package:dictionary/services/embedded_data_service.dart';
-import 'package:dictionary/services/local_sql/sql_lite.dart';
+import 'package:dictionary/services/local_sql/sql_data_api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class DictionaryLocalDataSource {
   Future<UserDictionaryList> getSplashUserDictionaryList();
   Future<UserDictionaryList> getUserDictionaryList();
   Future<void> cacheUserDictionaryList(List<Dictionary> list);
-  Future<void> cacheProgressData(Map<String, List<AnswerData>> progressData);
 }
 
 // ignore: constant_identifier_names
@@ -18,12 +17,12 @@ const STORED_DICTIONARY_LISTS_KEY = 'STORED_DICTIONARY_LISTS_KEY';
 class DictionaryLocalDataSourceImpl implements DictionaryLocalDataSource {
   final EmbeddedDataService embeddedDataService;
   final SharedPreferences sharedPreferences;
-  final SQLLiteService sqlService;
+  final SQLDataAPI sqlDataAPI;
 
   DictionaryLocalDataSourceImpl(
       {required this.embeddedDataService,
       required this.sharedPreferences,
-      required this.sqlService});
+      required this.sqlDataAPI});
   @override
   Future<UserDictionaryList> getSplashUserDictionaryList() async {
     List<UserDictionary> list = [];
@@ -65,7 +64,7 @@ class DictionaryLocalDataSourceImpl implements DictionaryLocalDataSource {
     }
 
     var progressData =
-        await sqlService.dictionaryProgress(dictionaryKeys: dictionaryKeys);
+        await sqlDataAPI.dictionaryesProgress(dictionaryKeys: dictionaryKeys);
     List<UserDictionary> userDictionaryes = [];
 
     for (var dictionary in dictionaryes) {
@@ -88,12 +87,6 @@ class DictionaryLocalDataSourceImpl implements DictionaryLocalDataSource {
       result.add(json.encode(dictionary));
     }
     sharedPreferences.setStringList(STORED_DICTIONARY_LISTS_KEY, result);
-  }
-
-  @override
-  Future<void> cacheProgressData(
-      Map<String, List<AnswerData>> progressData) async {
-    await sqlService.updateProgressData(progressData);
   }
 
   UserDictionary _splashDictionary(Dictionary dictionary) {

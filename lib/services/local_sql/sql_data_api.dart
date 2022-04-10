@@ -14,6 +14,14 @@ abstract class SQLDataAPI {
   Future<void> addCardToDictionary(
       {required String dictionaryKey, required String cardKey});
   Future<void> readDictionaryCards(Dictionary dictionary);
+  Future<void> saveAnswer(
+      {required String collectionKey,
+      required String cardKey,
+      required int remember});
+  Future<Map<String, UserDictionaryProgress>> dictionaryesProgress(
+      {required List<String> dictionaryKeys});
+  Future<UserDictionaryProgress> dictionaryProgress(
+      {required String dictionaryKey});
 }
 
 class SQLDataAPIImpl implements SQLDataAPI {
@@ -22,6 +30,17 @@ class SQLDataAPIImpl implements SQLDataAPI {
 
   final _dictionaryController = StreamController<List<Dictionary>>();
   final _cardController = StreamController<List<CardData>>();
+
+  static int _currentTimeInSeconds() {
+    var ms = (DateTime.now()).millisecondsSinceEpoch;
+    return (ms / 1000).round();
+  }
+
+  static int _currentTimeInDays() {
+    const int dayLength = 1000 * 24 * 60 * 60;
+    var ms = (DateTime.now()).millisecondsSinceEpoch;
+    return (ms / dayLength).round();
+  }
 
   Stream<List<Dictionary>> get dictionaryes async* {
     yield [];
@@ -130,6 +149,53 @@ class SQLDataAPIImpl implements SQLDataAPI {
       deck: dictionaryKey,
       card: cardKey,
     ));
+  }
+
+  @override
+  Future<void> saveAnswer(
+      {required String collectionKey,
+      required String cardKey,
+      required int remember}) async {
+    await db.answersDao.addAnswer(AnswersCompanion.insert(
+      key: uuid.v4(),
+      card: cardKey,
+      day: _currentTimeInDays(),
+      remember: remember,
+      time: _currentTimeInSeconds(),
+    ));
+  }
+
+  @override
+  Future<Map<String, UserDictionaryProgress>> dictionaryesProgress(
+      {required List<String> dictionaryKeys}) async {
+    Map<String, UserDictionaryProgress> _result = {};
+    for (var dictionaryKey in dictionaryKeys) {
+      _result[dictionaryKey] =
+          await dictionaryProgress(dictionaryKey: dictionaryKey);
+    }
+    return _result;
+  }
+
+  @override
+  Future<UserDictionaryProgress> dictionaryProgress(
+      {required String dictionaryKey}) async {
+    int currentDay = _currentTimeInDays();
+    int firstDay = currentDay - 5;
+    List<UserDayProgress> dailyProgress = [];
+
+    for (var day = firstDay; day <= currentDay; day++) {
+      var dailyAnswers = await db.answersDao.getDailyRemember(day);
+      dailyProgress
+          .add(UserDayProgress(progress: dailyAnswers.length, day: day));
+    }
+
+    int newCards = (await db.tasksDao.getDeckNew(dictionaryKey)).length;
+    int repeateCards = (await db.tasksDao.getDeckRepeate(dictionaryKey)).length;
+
+    return UserDictionaryProgress(
+        dailyProgress: dailyProgress,
+        newCards: newCards,
+        repeateCards: repeateCards);
   }
 
   Future<List<Dictionary>> _DeckListToDictionaryList(List<Deck> decks) async {

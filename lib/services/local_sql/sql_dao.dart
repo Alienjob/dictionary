@@ -132,3 +132,51 @@ class DeckCardsDao extends DatabaseAccessor<DictionaryDatabase>
     return delete(deckCards).where((t) => t.key.equals(entry.key.value));
   }
 }
+
+@DriftAccessor(tables: [Answers])
+class AnswersDao extends DatabaseAccessor<DictionaryDatabase>
+    with _$AnswersDaoMixin {
+  AnswersDao(DictionaryDatabase db) : super(db);
+
+  Future<Answer> getAnswer(String key) {
+    return (select(answers)..where((tbl) => tbl.key.equals(key))).getSingle();
+  }
+
+  Future<List<Answer>> getDailyRemember(int day) {
+    return (select(answers)
+          ..where((tbl) => tbl.day.equals(day) & tbl.remember.equals(1)))
+        .get();
+  }
+
+  Future<int> addAnswer(AnswersCompanion entry) {
+    return into(answers).insert(entry);
+  }
+}
+
+@DriftAccessor(tables: [Tasks])
+class TasksDao extends DatabaseAccessor<DictionaryDatabase>
+    with _$TasksDaoMixin {
+  TasksDao(DictionaryDatabase db) : super(db);
+
+  Future<Task> getTask(String key) {
+    return (select(tasks)..where((tbl) => tbl.key.equals(key))).getSingle();
+  }
+
+  Future<List<Task>> getDeckNew(String deck) {
+    return (select(tasks)
+          ..where((tbl) =>
+              tbl.deck.equals(deck) & tbl.type.equals(1) & tbl.done.equals(0)))
+        .get();
+  }
+
+  Future<List<Task>> getDeckRepeate(String deck) {
+    return (select(tasks)
+          ..where((tbl) =>
+              tbl.deck.equals(deck) & tbl.type.equals(2) & tbl.done.equals(0)))
+        .get();
+  }
+
+  Future<int> addTask(TasksCompanion entry) {
+    return into(tasks).insert(entry);
+  }
+}

@@ -4,6 +4,8 @@ import 'package:dictionary/features/dictionary/data/datasources/dictionary_remot
 import 'package:dictionary/features/dictionary/data/repositories/dictionary_repository_impl.dart';
 import 'package:dictionary/features/dictionary/domain/repositories/dictionary_repository.dart';
 import 'package:dictionary/services/embedded_data_service.dart';
+import 'package:dictionary/services/local_sql/sql_data_api.dart';
+import 'package:dictionary/services/local_sql/sql_data_base.dart';
 import 'package:dictionary/services/remote_data_service.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dictionary/features/auth/data/repositories/authentication_repository.dart';
@@ -11,7 +13,6 @@ import 'package:dictionary/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:dictionary/features/dictionary/data/datasources/dictionary_local_data_source.dart';
 import 'package:dictionary/features/dictionary/presentation/bloc/dictionary_collection_bloc.dart';
 import 'package:dictionary/features/cards/data/repositories/card_collection_repository.dart';
-import 'package:dictionary/services/local_sql/sql_lite.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -22,7 +23,10 @@ Future<void> init() async {
   sl.registerLazySingleton<SharedPreferences>(() => prefs);
   sl.registerLazySingleton<EmbeddedDataService>(
       () => EmbeddedDataServiceImpl());
-  sl.registerLazySingleton(() => SQLLiteService());
+
+  final db = DictionaryDatabase(sl());
+
+  sl.registerLazySingleton<SQLDataAPI>(() => SQLDataAPIImpl(db: db));
   sl.registerLazySingleton(() => InternetConnectionChecker());
   sl.registerLazySingleton<NetworkInfo>(
       () => NetworkInfoImpl(connectionChecker: sl()));
@@ -37,7 +41,7 @@ Future<void> init() async {
       () => DictionaryLocalDataSourceImpl(
             embeddedDataService: sl(),
             sharedPreferences: sl(),
-            sqlService: sl(),
+            sqlDataAPI: sl(),
           ));
   sl.registerLazySingleton<CardCollectionRepository>(() =>
       CardCollectionRepository(

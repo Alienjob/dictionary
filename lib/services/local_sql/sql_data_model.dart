@@ -37,3 +37,25 @@ class Imgs extends Table {
   TextColumn get path => text()();
   IntColumn get pathType => integer()();
 }
+
+// user refered
+
+class Answers extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  TextColumn get key => text()();
+  TextColumn get card => text()();
+  IntColumn get remember => integer()();
+  IntColumn get time => integer()();
+  IntColumn get day => integer()();
+}
+
+class Tasks extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  TextColumn get key => text()();
+  IntColumn get type => integer()(); // новая, повторить1 ...
+  TextColumn get deck => text()();
+  TextColumn get card => text()();
+  IntColumn get createTime => integer()();
+  IntColumn get done => integer()();
+  IntColumn get doneTime => integer()();
+}

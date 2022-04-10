@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:dictionary/features/dictionary/data/datasources/dictionary_local_data_source.dart';
 import 'package:dictionary/features/dictionary/domain/entities/dictionary.dart';
 import 'package:dictionary/services/embedded_data_service.dart';
-import 'package:dictionary/services/local_sql/sql_lite.dart';
+import 'package:dictionary/services/local_sql/sql_data_api.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,28 +12,28 @@ import '../../../../fixtures/dictionary_list.dart';
 
 class MockSharedPreferences extends Mock implements SharedPreferences {}
 
-class MockSQLService extends Mock implements SQLLiteService {}
+class MockSQLDataAPI extends Mock implements SQLDataAPI {}
 
 class MockEmbeddedService extends Mock implements EmbeddedDataService {}
 
 void main() {
   MockSharedPreferences mockSharedPreferences = MockSharedPreferences();
-  MockSQLService mockSqlService = MockSQLService();
+  MockSQLDataAPI mockSQLDataAPI = MockSQLDataAPI();
   MockEmbeddedService mockEmbeddedService = MockEmbeddedService();
   DictionaryLocalDataSourceImpl dataSource = DictionaryLocalDataSourceImpl(
     sharedPreferences: mockSharedPreferences,
-    sqlService: mockSqlService,
+    sqlDataAPI: mockSQLDataAPI,
     embeddedDataService: mockEmbeddedService,
   );
 
   setUp(
     () {
       mockSharedPreferences = MockSharedPreferences();
-      mockSqlService = MockSQLService();
+      mockSQLDataAPI = MockSQLDataAPI();
       mockEmbeddedService = MockEmbeddedService();
       dataSource = DictionaryLocalDataSourceImpl(
           sharedPreferences: mockSharedPreferences,
-          sqlService: mockSqlService,
+          sqlDataAPI: mockSQLDataAPI,
           embeddedDataService: mockEmbeddedService);
     },
   );
@@ -96,7 +96,7 @@ void main() {
           // arrange
 
           when(() => mockSharedPreferences.getStringList(any())).thenReturn(sp);
-          when(() => mockSqlService.dictionaryProgress(dictionaryKeys: keys))
+          when(() => mockSQLDataAPI.dictionaryesProgress(dictionaryKeys: keys))
               .thenAnswer((_) async => progress);
           when(() => mockEmbeddedService.embeddedDictionaryes())
               .thenReturn(<Dictionary>[]);
@@ -105,7 +105,8 @@ void main() {
           // assert
           verify(() =>
               mockSharedPreferences.getStringList(STORED_DICTIONARY_LISTS_KEY));
-          verify(() => mockSqlService.dictionaryProgress(dictionaryKeys: keys));
+          verify(
+              () => mockSQLDataAPI.dictionaryesProgress(dictionaryKeys: keys));
 
           expect(result.userDictionaryList,
               equals(UserDictionaryListFixture.withProgress));

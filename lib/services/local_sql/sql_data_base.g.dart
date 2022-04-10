@@ -1354,6 +1354,718 @@ class $ImgsTable extends Imgs with TableInfo<$ImgsTable, Img> {
   }
 }
 
+class Answer extends DataClass implements Insertable<Answer> {
+  final int id;
+  final String key;
+  final String card;
+  final int remember;
+  final int time;
+  final int day;
+  Answer(
+      {required this.id,
+      required this.key,
+      required this.card,
+      required this.remember,
+      required this.time,
+      required this.day});
+  factory Answer.fromData(Map<String, dynamic> data, {String? prefix}) {
+    final effectivePrefix = prefix ?? '';
+    return Answer(
+      id: const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
+      key: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}key'])!,
+      card: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}card'])!,
+      remember: const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}remember'])!,
+      time: const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}time'])!,
+      day: const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}day'])!,
+    );
+  }
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['key'] = Variable<String>(key);
+    map['card'] = Variable<String>(card);
+    map['remember'] = Variable<int>(remember);
+    map['time'] = Variable<int>(time);
+    map['day'] = Variable<int>(day);
+    return map;
+  }
+
+  AnswersCompanion toCompanion(bool nullToAbsent) {
+    return AnswersCompanion(
+      id: Value(id),
+      key: Value(key),
+      card: Value(card),
+      remember: Value(remember),
+      time: Value(time),
+      day: Value(day),
+    );
+  }
+
+  factory Answer.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return Answer(
+      id: serializer.fromJson<int>(json['id']),
+      key: serializer.fromJson<String>(json['key']),
+      card: serializer.fromJson<String>(json['card']),
+      remember: serializer.fromJson<int>(json['remember']),
+      time: serializer.fromJson<int>(json['time']),
+      day: serializer.fromJson<int>(json['day']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'key': serializer.toJson<String>(key),
+      'card': serializer.toJson<String>(card),
+      'remember': serializer.toJson<int>(remember),
+      'time': serializer.toJson<int>(time),
+      'day': serializer.toJson<int>(day),
+    };
+  }
+
+  Answer copyWith(
+          {int? id,
+          String? key,
+          String? card,
+          int? remember,
+          int? time,
+          int? day}) =>
+      Answer(
+        id: id ?? this.id,
+        key: key ?? this.key,
+        card: card ?? this.card,
+        remember: remember ?? this.remember,
+        time: time ?? this.time,
+        day: day ?? this.day,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('Answer(')
+          ..write('id: $id, ')
+          ..write('key: $key, ')
+          ..write('card: $card, ')
+          ..write('remember: $remember, ')
+          ..write('time: $time, ')
+          ..write('day: $day')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, key, card, remember, time, day);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Answer &&
+          other.id == this.id &&
+          other.key == this.key &&
+          other.card == this.card &&
+          other.remember == this.remember &&
+          other.time == this.time &&
+          other.day == this.day);
+}
+
+class AnswersCompanion extends UpdateCompanion<Answer> {
+  final Value<int> id;
+  final Value<String> key;
+  final Value<String> card;
+  final Value<int> remember;
+  final Value<int> time;
+  final Value<int> day;
+  const AnswersCompanion({
+    this.id = const Value.absent(),
+    this.key = const Value.absent(),
+    this.card = const Value.absent(),
+    this.remember = const Value.absent(),
+    this.time = const Value.absent(),
+    this.day = const Value.absent(),
+  });
+  AnswersCompanion.insert({
+    this.id = const Value.absent(),
+    required String key,
+    required String card,
+    required int remember,
+    required int time,
+    required int day,
+  })  : key = Value(key),
+        card = Value(card),
+        remember = Value(remember),
+        time = Value(time),
+        day = Value(day);
+  static Insertable<Answer> custom({
+    Expression<int>? id,
+    Expression<String>? key,
+    Expression<String>? card,
+    Expression<int>? remember,
+    Expression<int>? time,
+    Expression<int>? day,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (key != null) 'key': key,
+      if (card != null) 'card': card,
+      if (remember != null) 'remember': remember,
+      if (time != null) 'time': time,
+      if (day != null) 'day': day,
+    });
+  }
+
+  AnswersCompanion copyWith(
+      {Value<int>? id,
+      Value<String>? key,
+      Value<String>? card,
+      Value<int>? remember,
+      Value<int>? time,
+      Value<int>? day}) {
+    return AnswersCompanion(
+      id: id ?? this.id,
+      key: key ?? this.key,
+      card: card ?? this.card,
+      remember: remember ?? this.remember,
+      time: time ?? this.time,
+      day: day ?? this.day,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (key.present) {
+      map['key'] = Variable<String>(key.value);
+    }
+    if (card.present) {
+      map['card'] = Variable<String>(card.value);
+    }
+    if (remember.present) {
+      map['remember'] = Variable<int>(remember.value);
+    }
+    if (time.present) {
+      map['time'] = Variable<int>(time.value);
+    }
+    if (day.present) {
+      map['day'] = Variable<int>(day.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('AnswersCompanion(')
+          ..write('id: $id, ')
+          ..write('key: $key, ')
+          ..write('card: $card, ')
+          ..write('remember: $remember, ')
+          ..write('time: $time, ')
+          ..write('day: $day')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $AnswersTable extends Answers with TableInfo<$AnswersTable, Answer> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $AnswersTable(this.attachedDatabase, [this._alias]);
+  final VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int?> id = GeneratedColumn<int?>(
+      'id', aliasedName, false,
+      type: const IntType(),
+      requiredDuringInsert: false,
+      defaultConstraints: 'PRIMARY KEY AUTOINCREMENT');
+  final VerificationMeta _keyMeta = const VerificationMeta('key');
+  @override
+  late final GeneratedColumn<String?> key = GeneratedColumn<String?>(
+      'key', aliasedName, false,
+      type: const StringType(), requiredDuringInsert: true);
+  final VerificationMeta _cardMeta = const VerificationMeta('card');
+  @override
+  late final GeneratedColumn<String?> card = GeneratedColumn<String?>(
+      'card', aliasedName, false,
+      type: const StringType(), requiredDuringInsert: true);
+  final VerificationMeta _rememberMeta = const VerificationMeta('remember');
+  @override
+  late final GeneratedColumn<int?> remember = GeneratedColumn<int?>(
+      'remember', aliasedName, false,
+      type: const IntType(), requiredDuringInsert: true);
+  final VerificationMeta _timeMeta = const VerificationMeta('time');
+  @override
+  late final GeneratedColumn<int?> time = GeneratedColumn<int?>(
+      'time', aliasedName, false,
+      type: const IntType(), requiredDuringInsert: true);
+  final VerificationMeta _dayMeta = const VerificationMeta('day');
+  @override
+  late final GeneratedColumn<int?> day = GeneratedColumn<int?>(
+      'day', aliasedName, false,
+      type: const IntType(), requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns => [id, key, card, remember, time, day];
+  @override
+  String get aliasedName => _alias ?? 'answers';
+  @override
+  String get actualTableName => 'answers';
+  @override
+  VerificationContext validateIntegrity(Insertable<Answer> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('key')) {
+      context.handle(
+          _keyMeta, key.isAcceptableOrUnknown(data['key']!, _keyMeta));
+    } else if (isInserting) {
+      context.missing(_keyMeta);
+    }
+    if (data.containsKey('card')) {
+      context.handle(
+          _cardMeta, card.isAcceptableOrUnknown(data['card']!, _cardMeta));
+    } else if (isInserting) {
+      context.missing(_cardMeta);
+    }
+    if (data.containsKey('remember')) {
+      context.handle(_rememberMeta,
+          remember.isAcceptableOrUnknown(data['remember']!, _rememberMeta));
+    } else if (isInserting) {
+      context.missing(_rememberMeta);
+    }
+    if (data.containsKey('time')) {
+      context.handle(
+          _timeMeta, time.isAcceptableOrUnknown(data['time']!, _timeMeta));
+    } else if (isInserting) {
+      context.missing(_timeMeta);
+    }
+    if (data.containsKey('day')) {
+      context.handle(
+          _dayMeta, day.isAcceptableOrUnknown(data['day']!, _dayMeta));
+    } else if (isInserting) {
+      context.missing(_dayMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  Answer map(Map<String, dynamic> data, {String? tablePrefix}) {
+    return Answer.fromData(data,
+        prefix: tablePrefix != null ? '$tablePrefix.' : null);
+  }
+
+  @override
+  $AnswersTable createAlias(String alias) {
+    return $AnswersTable(attachedDatabase, alias);
+  }
+}
+
+class Task extends DataClass implements Insertable<Task> {
+  final int id;
+  final String key;
+  final int type;
+  final String deck;
+  final String card;
+  final int createTime;
+  final int done;
+  final int doneTime;
+  Task(
+      {required this.id,
+      required this.key,
+      required this.type,
+      required this.deck,
+      required this.card,
+      required this.createTime,
+      required this.done,
+      required this.doneTime});
+  factory Task.fromData(Map<String, dynamic> data, {String? prefix}) {
+    final effectivePrefix = prefix ?? '';
+    return Task(
+      id: const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
+      key: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}key'])!,
+      type: const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}type'])!,
+      deck: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}deck'])!,
+      card: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}card'])!,
+      createTime: const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}create_time'])!,
+      done: const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}done'])!,
+      doneTime: const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}done_time'])!,
+    );
+  }
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['key'] = Variable<String>(key);
+    map['type'] = Variable<int>(type);
+    map['deck'] = Variable<String>(deck);
+    map['card'] = Variable<String>(card);
+    map['create_time'] = Variable<int>(createTime);
+    map['done'] = Variable<int>(done);
+    map['done_time'] = Variable<int>(doneTime);
+    return map;
+  }
+
+  TasksCompanion toCompanion(bool nullToAbsent) {
+    return TasksCompanion(
+      id: Value(id),
+      key: Value(key),
+      type: Value(type),
+      deck: Value(deck),
+      card: Value(card),
+      createTime: Value(createTime),
+      done: Value(done),
+      doneTime: Value(doneTime),
+    );
+  }
+
+  factory Task.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return Task(
+      id: serializer.fromJson<int>(json['id']),
+      key: serializer.fromJson<String>(json['key']),
+      type: serializer.fromJson<int>(json['type']),
+      deck: serializer.fromJson<String>(json['deck']),
+      card: serializer.fromJson<String>(json['card']),
+      createTime: serializer.fromJson<int>(json['createTime']),
+      done: serializer.fromJson<int>(json['done']),
+      doneTime: serializer.fromJson<int>(json['doneTime']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'key': serializer.toJson<String>(key),
+      'type': serializer.toJson<int>(type),
+      'deck': serializer.toJson<String>(deck),
+      'card': serializer.toJson<String>(card),
+      'createTime': serializer.toJson<int>(createTime),
+      'done': serializer.toJson<int>(done),
+      'doneTime': serializer.toJson<int>(doneTime),
+    };
+  }
+
+  Task copyWith(
+          {int? id,
+          String? key,
+          int? type,
+          String? deck,
+          String? card,
+          int? createTime,
+          int? done,
+          int? doneTime}) =>
+      Task(
+        id: id ?? this.id,
+        key: key ?? this.key,
+        type: type ?? this.type,
+        deck: deck ?? this.deck,
+        card: card ?? this.card,
+        createTime: createTime ?? this.createTime,
+        done: done ?? this.done,
+        doneTime: doneTime ?? this.doneTime,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('Task(')
+          ..write('id: $id, ')
+          ..write('key: $key, ')
+          ..write('type: $type, ')
+          ..write('deck: $deck, ')
+          ..write('card: $card, ')
+          ..write('createTime: $createTime, ')
+          ..write('done: $done, ')
+          ..write('doneTime: $doneTime')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(id, key, type, deck, card, createTime, done, doneTime);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Task &&
+          other.id == this.id &&
+          other.key == this.key &&
+          other.type == this.type &&
+          other.deck == this.deck &&
+          other.card == this.card &&
+          other.createTime == this.createTime &&
+          other.done == this.done &&
+          other.doneTime == this.doneTime);
+}
+
+class TasksCompanion extends UpdateCompanion<Task> {
+  final Value<int> id;
+  final Value<String> key;
+  final Value<int> type;
+  final Value<String> deck;
+  final Value<String> card;
+  final Value<int> createTime;
+  final Value<int> done;
+  final Value<int> doneTime;
+  const TasksCompanion({
+    this.id = const Value.absent(),
+    this.key = const Value.absent(),
+    this.type = const Value.absent(),
+    this.deck = const Value.absent(),
+    this.card = const Value.absent(),
+    this.createTime = const Value.absent(),
+    this.done = const Value.absent(),
+    this.doneTime = const Value.absent(),
+  });
+  TasksCompanion.insert({
+    this.id = const Value.absent(),
+    required String key,
+    required int type,
+    required String deck,
+    required String card,
+    required int createTime,
+    required int done,
+    required int doneTime,
+  })  : key = Value(key),
+        type = Value(type),
+        deck = Value(deck),
+        card = Value(card),
+        createTime = Value(createTime),
+        done = Value(done),
+        doneTime = Value(doneTime);
+  static Insertable<Task> custom({
+    Expression<int>? id,
+    Expression<String>? key,
+    Expression<int>? type,
+    Expression<String>? deck,
+    Expression<String>? card,
+    Expression<int>? createTime,
+    Expression<int>? done,
+    Expression<int>? doneTime,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (key != null) 'key': key,
+      if (type != null) 'type': type,
+      if (deck != null) 'deck': deck,
+      if (card != null) 'card': card,
+      if (createTime != null) 'create_time': createTime,
+      if (done != null) 'done': done,
+      if (doneTime != null) 'done_time': doneTime,
+    });
+  }
+
+  TasksCompanion copyWith(
+      {Value<int>? id,
+      Value<String>? key,
+      Value<int>? type,
+      Value<String>? deck,
+      Value<String>? card,
+      Value<int>? createTime,
+      Value<int>? done,
+      Value<int>? doneTime}) {
+    return TasksCompanion(
+      id: id ?? this.id,
+      key: key ?? this.key,
+      type: type ?? this.type,
+      deck: deck ?? this.deck,
+      card: card ?? this.card,
+      createTime: createTime ?? this.createTime,
+      done: done ?? this.done,
+      doneTime: doneTime ?? this.doneTime,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (key.present) {
+      map['key'] = Variable<String>(key.value);
+    }
+    if (type.present) {
+      map['type'] = Variable<int>(type.value);
+    }
+    if (deck.present) {
+      map['deck'] = Variable<String>(deck.value);
+    }
+    if (card.present) {
+      map['card'] = Variable<String>(card.value);
+    }
+    if (createTime.present) {
+      map['create_time'] = Variable<int>(createTime.value);
+    }
+    if (done.present) {
+      map['done'] = Variable<int>(done.value);
+    }
+    if (doneTime.present) {
+      map['done_time'] = Variable<int>(doneTime.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('TasksCompanion(')
+          ..write('id: $id, ')
+          ..write('key: $key, ')
+          ..write('type: $type, ')
+          ..write('deck: $deck, ')
+          ..write('card: $card, ')
+          ..write('createTime: $createTime, ')
+          ..write('done: $done, ')
+          ..write('doneTime: $doneTime')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $TasksTable extends Tasks with TableInfo<$TasksTable, Task> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $TasksTable(this.attachedDatabase, [this._alias]);
+  final VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int?> id = GeneratedColumn<int?>(
+      'id', aliasedName, false,
+      type: const IntType(),
+      requiredDuringInsert: false,
+      defaultConstraints: 'PRIMARY KEY AUTOINCREMENT');
+  final VerificationMeta _keyMeta = const VerificationMeta('key');
+  @override
+  late final GeneratedColumn<String?> key = GeneratedColumn<String?>(
+      'key', aliasedName, false,
+      type: const StringType(), requiredDuringInsert: true);
+  final VerificationMeta _typeMeta = const VerificationMeta('type');
+  @override
+  late final GeneratedColumn<int?> type = GeneratedColumn<int?>(
+      'type', aliasedName, false,
+      type: const IntType(), requiredDuringInsert: true);
+  final VerificationMeta _deckMeta = const VerificationMeta('deck');
+  @override
+  late final GeneratedColumn<String?> deck = GeneratedColumn<String?>(
+      'deck', aliasedName, false,
+      type: const StringType(), requiredDuringInsert: true);
+  final VerificationMeta _cardMeta = const VerificationMeta('card');
+  @override
+  late final GeneratedColumn<String?> card = GeneratedColumn<String?>(
+      'card', aliasedName, false,
+      type: const StringType(), requiredDuringInsert: true);
+  final VerificationMeta _createTimeMeta = const VerificationMeta('createTime');
+  @override
+  late final GeneratedColumn<int?> createTime = GeneratedColumn<int?>(
+      'create_time', aliasedName, false,
+      type: const IntType(), requiredDuringInsert: true);
+  final VerificationMeta _doneMeta = const VerificationMeta('done');
+  @override
+  late final GeneratedColumn<int?> done = GeneratedColumn<int?>(
+      'done', aliasedName, false,
+      type: const IntType(), requiredDuringInsert: true);
+  final VerificationMeta _doneTimeMeta = const VerificationMeta('doneTime');
+  @override
+  late final GeneratedColumn<int?> doneTime = GeneratedColumn<int?>(
+      'done_time', aliasedName, false,
+      type: const IntType(), requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns =>
+      [id, key, type, deck, card, createTime, done, doneTime];
+  @override
+  String get aliasedName => _alias ?? 'tasks';
+  @override
+  String get actualTableName => 'tasks';
+  @override
+  VerificationContext validateIntegrity(Insertable<Task> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('key')) {
+      context.handle(
+          _keyMeta, key.isAcceptableOrUnknown(data['key']!, _keyMeta));
+    } else if (isInserting) {
+      context.missing(_keyMeta);
+    }
+    if (data.containsKey('type')) {
+      context.handle(
+          _typeMeta, type.isAcceptableOrUnknown(data['type']!, _typeMeta));
+    } else if (isInserting) {
+      context.missing(_typeMeta);
+    }
+    if (data.containsKey('deck')) {
+      context.handle(
+          _deckMeta, deck.isAcceptableOrUnknown(data['deck']!, _deckMeta));
+    } else if (isInserting) {
+      context.missing(_deckMeta);
+    }
+    if (data.containsKey('card')) {
+      context.handle(
+          _cardMeta, card.isAcceptableOrUnknown(data['card']!, _cardMeta));
+    } else if (isInserting) {
+      context.missing(_cardMeta);
+    }
+    if (data.containsKey('create_time')) {
+      context.handle(
+          _createTimeMeta,
+          createTime.isAcceptableOrUnknown(
+              data['create_time']!, _createTimeMeta));
+    } else if (isInserting) {
+      context.missing(_createTimeMeta);
+    }
+    if (data.containsKey('done')) {
+      context.handle(
+          _doneMeta, done.isAcceptableOrUnknown(data['done']!, _doneMeta));
+    } else if (isInserting) {
+      context.missing(_doneMeta);
+    }
+    if (data.containsKey('done_time')) {
+      context.handle(_doneTimeMeta,
+          doneTime.isAcceptableOrUnknown(data['done_time']!, _doneTimeMeta));
+    } else if (isInserting) {
+      context.missing(_doneTimeMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  Task map(Map<String, dynamic> data, {String? tablePrefix}) {
+    return Task.fromData(data,
+        prefix: tablePrefix != null ? '$tablePrefix.' : null);
+  }
+
+  @override
+  $TasksTable createAlias(String alias) {
+    return $TasksTable(attachedDatabase, alias);
+  }
+}
+
 abstract class _$DictionaryDatabase extends GeneratedDatabase {
   _$DictionaryDatabase(QueryExecutor e)
       : super(SqlTypeSystem.defaultInstance, e);
@@ -1362,15 +2074,19 @@ abstract class _$DictionaryDatabase extends GeneratedDatabase {
   late final $FaktsTable fakts = $FaktsTable(this);
   late final $CardsTable cards = $CardsTable(this);
   late final $ImgsTable imgs = $ImgsTable(this);
+  late final $AnswersTable answers = $AnswersTable(this);
+  late final $TasksTable tasks = $TasksTable(this);
   late final DecksDao decksDao = DecksDao(this as DictionaryDatabase);
   late final CardsDao cardsDao = CardsDao(this as DictionaryDatabase);
   late final FaktsDao faktsDao = FaktsDao(this as DictionaryDatabase);
   late final ImgsDao imgsDao = ImgsDao(this as DictionaryDatabase);
   late final DeckCardsDao deckCardsDao =
       DeckCardsDao(this as DictionaryDatabase);
+  late final AnswersDao answersDao = AnswersDao(this as DictionaryDatabase);
+  late final TasksDao tasksDao = TasksDao(this as DictionaryDatabase);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities =>
-      [decks, deckCards, fakts, cards, imgs];
+      [decks, deckCards, fakts, cards, imgs, answers, tasks];
 }

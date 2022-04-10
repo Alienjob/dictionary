@@ -48,7 +48,7 @@ class DictionaryRepositoryImpl implements DictionaryRepository {
       var progressData =
           await remoteDataSource.getUserProgressData(dictionaryes);
       await localDataSource.cacheUserDictionaryList(dictionaryes);
-      await localDataSource.cacheProgressData(progressData);
+      //await localDataSource.cacheProgressData(progressData);
 
       return getCachedDictionaryList();
     } on LocalExeption {

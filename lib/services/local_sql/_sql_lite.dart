@@ -4,7 +4,7 @@ import 'package:dictionary/core/domain/error/exeptions.dart';
 import 'package:dictionary/features/dictionary/domain/entities/dictionary.dart';
 import 'package:sqflite/sqflite.dart';
 
-class SQLLiteService {
+class _SQLLiteService {
   static int _currentTimeInSeconds() {
     var ms = (DateTime.now()).millisecondsSinceEpoch;
     return (ms / 1000).round();

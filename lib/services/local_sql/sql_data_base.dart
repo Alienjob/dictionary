@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dictionary/services/embedded_data_service.dart';
 import 'package:dictionary/services/local_sql/sql_data_api.dart';
 import 'package:drift/drift.dart';
@@ -5,13 +7,31 @@ import 'package:drift/drift.dart';
 import './sql_data_model.dart';
 import './sql_dao.dart';
 
+import 'package:drift/native.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as p;
+
 part 'sql_data_base.g.dart';
 
-@DriftDatabase(
-    tables: [Decks, DeckCards, Fakts, Cards, Imgs],
-    daos: [DecksDao, CardsDao, FaktsDao, ImgsDao, DeckCardsDao])
+@DriftDatabase(tables: [
+  Decks,
+  DeckCards,
+  Fakts,
+  Cards,
+  Imgs,
+  Answers,
+  Tasks
+], daos: [
+  DecksDao,
+  CardsDao,
+  FaktsDao,
+  ImgsDao,
+  DeckCardsDao,
+  AnswersDao,
+  TasksDao
+])
 class DictionaryDatabase extends _$DictionaryDatabase {
-  DictionaryDatabase(QueryExecutor e, this.embeddedDataService) : super(e);
+  DictionaryDatabase(this.embeddedDataService) : super(_openConnection());
 
   final EmbeddedDataService embeddedDataService;
 
@@ -46,4 +66,15 @@ class DictionaryDatabase extends _$DictionaryDatabase {
       }
     }
   }
+}
+
+LazyDatabase _openConnection() {
+  // the LazyDatabase util lets us find the right location for the file async.
+  return LazyDatabase(() async {
+    // put the database file, called db.sqlite here, into the documents folder
+    // for your app.
+    final dbFolder = await getApplicationDocumentsDirectory();
+    final file = File(p.join(dbFolder.path, 'db.sqlite'));
+    return NativeDatabase(file);
+  });
 }

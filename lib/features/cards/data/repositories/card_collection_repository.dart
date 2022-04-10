@@ -3,16 +3,16 @@ import 'dart:async';
 import 'package:dictionary/features/auth/data/repositories/authentication_repository.dart';
 import 'package:dictionary/features/cards/domain/entities/card.dart';
 import 'package:dictionary/services/embedded_data_service.dart';
-import 'package:dictionary/services/local_sql/sql_lite.dart';
+import 'package:dictionary/services/local_sql/sql_data_api.dart';
 
 class CardCollectionRepository {
   CardCollectionRepository(
       {required AuthenticationRepository authRepository,
       required this.embeddedDataService,
-      required SQLLiteService localSql})
+      required SQLDataAPI localSql})
       : _localSql = localSql;
 
-  final SQLLiteService _localSql;
+  final SQLDataAPI _localSql;
   final EmbeddedDataService embeddedDataService;
   String _collectionKey = '';
 

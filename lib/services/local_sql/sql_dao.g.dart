@@ -21,3 +21,9 @@ mixin _$ImgsDaoMixin on DatabaseAccessor<DictionaryDatabase> {
 mixin _$DeckCardsDaoMixin on DatabaseAccessor<DictionaryDatabase> {
   $DeckCardsTable get deckCards => attachedDatabase.deckCards;
 }
+mixin _$AnswersDaoMixin on DatabaseAccessor<DictionaryDatabase> {
+  $AnswersTable get answers => attachedDatabase.answers;
+}
+mixin _$TasksDaoMixin on DatabaseAccessor<DictionaryDatabase> {
+  $TasksTable get tasks => attachedDatabase.tasks;
+}
